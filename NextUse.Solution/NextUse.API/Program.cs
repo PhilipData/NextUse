@@ -38,6 +38,7 @@ namespace NextUse.API
             app.MapControllers();
 
             app.Run();
+
         }
     }
 }
