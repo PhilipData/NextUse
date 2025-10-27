@@ -1,8 +1,11 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Abstractions;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.Resource;
+using NextUse.DAL.Extensions;
 
 namespace NextUse.API
 {
@@ -21,7 +24,25 @@ namespace NextUse.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+
+
+            builder.Services.AddIdentity<User, IdentityRole>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+            })
+     .AddEntityFrameworkStores<ApplicationDBContext>()
+     .AddDefaultTokenProviders();
+
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.SameSite = SameSiteMode.None; // Allow cross-origin cookies
+                options.Cookie.HttpOnly = true;
+            });
+
+            builder.Services.AddDbContext<ApplicationDBContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
             var app = builder.Build();
+
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
