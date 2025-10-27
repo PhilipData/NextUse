@@ -10,4 +10,8 @@
     <ProjectReference Include="..\NextUse.DAL\NextUse.DAL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\Interface\" />
+  </ItemGroup>
+
 </Project>

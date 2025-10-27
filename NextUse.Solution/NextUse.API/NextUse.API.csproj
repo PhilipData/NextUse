@@ -24,4 +24,8 @@
     <ProjectReference Include="..\NextUse.Service\NextUse.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Utilities\" />
+  </ItemGroup>
+
 </Project>
