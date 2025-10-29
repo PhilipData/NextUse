@@ -1,7 +1,12 @@
-﻿
-namespace NextUse.Service
-{
-    internal class GlobalUsings
-    {
-    }
-}
+﻿global using Microsoft.IdentityModel.Tokens;
+global using NextUse.DAL.Database.Entities;
+global using NextUse.DAL.Repository.Interface;
+global using NextUse.Services.Services.Interface;
+//global using NextUse.Services.DTO.RatingDTO;
+//global using NextUse.Services.DTO.CategoryDTO;
+global using NextUse.Services.DTO.CommentDTO;
+global using NextUse.Services.DTO.BookmarkDTO;
+global using NextUse.Services.DTO.ImageDTO;
+//global using NextUse.Services.DTO.ProfileDTO;
+//global using NextUse.Services.DTO.AddressDTO;
+//global using NextUse.Services.DTO.MessageDTO;
