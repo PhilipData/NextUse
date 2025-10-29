@@ -6,6 +6,10 @@ using Microsoft.Identity.Abstractions;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.Resource;
 using NextUse.DAL.Extensions;
+using NextUse.DAL.Repository;
+using NextUse.DAL.Repository.Interface;
+using NextUse.Service.Services;
+using NextUse.Service.Services.Interface;
 
 namespace NextUse.API
 {
@@ -24,7 +28,8 @@ namespace NextUse.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
 
             builder.Services.AddIdentity<User, IdentityRole>(options =>
             {
