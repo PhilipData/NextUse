@@ -28,6 +28,12 @@ namespace NextUse.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
+            builder.Services.AddScoped<IProfileService, ProfileService>();
+
+            builder.Services.AddScoped<IAddressRepository, AddressRepository>();
+            builder.Services.AddScoped<IAddressService, AddressService>();
+
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
 
