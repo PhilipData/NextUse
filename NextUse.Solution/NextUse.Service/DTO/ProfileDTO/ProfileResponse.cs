@@ -32,7 +32,7 @@ namespace NextUse.Service.DTO.ProfileDTO
     public class ProfileBookmarkResponse
     {
         public int Id { get; set; }
-        public BookmarkProduckResponse? Product { get; set; }
+        public BookmarkProductResponse? Product { get; set; }
 
     }
 
