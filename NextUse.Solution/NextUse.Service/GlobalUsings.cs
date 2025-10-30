@@ -9,4 +9,4 @@ global using NextUse.Services.DTO.BookmarkDTO;
 global using NextUse.Services.DTO.ImageDTO;
 //global using NextUse.Services.DTO.ProfileDTO;
 //global using NextUse.Services.DTO.AddressDTO;
-//global using NextUse.Services.DTO.MessageDTO;
+global using NextUse.Services.DTO.MessageDTO;
