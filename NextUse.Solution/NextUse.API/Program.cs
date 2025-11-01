@@ -6,6 +6,12 @@ using Microsoft.Identity.Abstractions;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.Resource;
 using NextUse.DAL.Extensions;
+using NextUse.DAL.Repository;
+using NextUse.DAL.Repository.Interface;
+using NextUse.Service.Services;
+using NextUse.Service.Services.Interface;
+using NextUse.Services.Services;
+using NextUse.Services.Services.Interface;
 
 namespace NextUse.API
 {
@@ -24,7 +30,29 @@ namespace NextUse.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
+            builder.Services.AddScoped<IProfileService, ProfileService>();
 
+            builder.Services.AddScoped<IAddressRepository, AddressRepository>();
+            builder.Services.AddScoped<IAddressService, AddressService>();
+
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
+
+            builder.Services.AddScoped<IBookmarkRepository, BookmarkRepository>();
+            builder.Services.AddScoped<IBookmarkService, BookmarkService>();
+
+            builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+            builder.Services.AddScoped<ICommentService, CommentService>();
+
+            builder.Services.AddScoped<IImageRepository, ImageRepository>();
+            builder.Services.AddScoped<IImageService, ImageService>();
+
+            //builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            //builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddScoped<IMessageRepository, MessageRepository>();
+            builder.Services.AddScoped<IMessageService, MessageService>();
 
             builder.Services.AddIdentity<User, IdentityRole>(options =>
             {
