@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
-using NextUse.Service.DTO.RatingDTO;
-using NextUse.Service.Services.Interface;
+using NextUse.Services.DTO.RatingDTO;
+using NextUse.Services.Services.Interface;
 
 namespace NextUse.API.Controllers
 {

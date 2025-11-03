@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NextUse.Service.DTO.ProfileDTO
+namespace NextUse.Services.DTO.ProfileDTO
 {
     public class ProfileRequest
     {

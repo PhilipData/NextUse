@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NextUse.API.Controllers;
-using NextUse.Service.DTO.CategoryDTO;
-using NextUse.Service.Services.Interface;
+using NextUse.Services.DTO.CategoryDTO;
+using NextUse.Services.Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;

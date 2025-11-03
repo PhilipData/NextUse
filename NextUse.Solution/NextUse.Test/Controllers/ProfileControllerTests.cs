@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
 using NextUse.API.Controllers;
-using NextUse.Service.DTO.ProfileDTO;
-using NextUse.Service.Services.Interface;
+using NextUse.Services.DTO.ProfileDTO;
+using NextUse.Services.Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -87,7 +87,7 @@ namespace NextUse.Test.Controllers
                     Housenumber = "1"
                 }
             };
-            _mockProfileService.Setup(service => service.AddAsync(newProfile)).ReturnsAsync(profileResponse);)
+            _mockProfileService.Setup(service => service.AddAsync(newProfile)).ReturnsAsync(profileResponse);
 
             // Act
             var result = await _Controller.Add(newProfile);

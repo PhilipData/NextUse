@@ -1,11 +1,11 @@
-﻿using NextUse.Service.DTO.AddressDTO;
+﻿using NextUse.Services.DTO.AddressDTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NextUse.Service.Services.Interface
+namespace NextUse.Services.Services.Interface
 {
     public interface IAddressService
     {

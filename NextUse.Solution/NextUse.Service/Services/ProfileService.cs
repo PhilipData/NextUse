@@ -1,8 +1,8 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using NextUse.DAL.Database.Entities;
 using NextUse.DAL.Repository.Interface;
-using NextUse.Service.DTO.ProfileDTO;
-using NextUse.Service.Services.Interface;
+using NextUse.Services.DTO.ProfileDTO;
+using NextUse.Services.Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NextUse.Service.Services
+namespace NextUse.Services.Services
 {
     public class ProfileService : IProfileService
     {

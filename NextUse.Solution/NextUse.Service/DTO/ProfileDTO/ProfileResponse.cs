@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NextUse.Service.DTO.ProfileDTO
+namespace NextUse.Services.DTO.ProfileDTO
 {
     public class ProfileResponse
     {
@@ -15,6 +15,7 @@ namespace NextUse.Service.DTO.ProfileDTO
         public required ProfileAddressResponse Address { get; set; }
         public IEnumerable<ProfileBookmarkResponse?> Bookmarks { get; set; }
         public IEnumerable<ProfileProductResponse> Products { get; set; } = [];
+        public bool IsBlocked { get; set; }
     }
 
     public class ProfileAddressResponse

@@ -1,8 +1,8 @@
 ﻿using Moq;
 using NextUse.DAL.Database.Entities;
 using NextUse.DAL.Repository.Interface;
-using NextUse.Service.DTO.RatingDTO;
-using NextUse.Service.Services;
+using NextUse.Services.DTO.RatingDTO;
+using NextUse.Services.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;

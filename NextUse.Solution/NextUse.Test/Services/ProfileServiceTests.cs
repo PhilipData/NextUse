@@ -1,8 +1,8 @@
 ﻿using Moq;
 using NextUse.DAL.Database.Entities;
 using NextUse.DAL.Repository.Interface;
-using NextUse.Service.DTO.ProfileDTO;
-using NextUse.Service.Services;
+using NextUse.Services.DTO.ProfileDTO;
+using NextUse.Services.Services;
 
 
 namespace NextUse.Test.Services

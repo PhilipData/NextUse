@@ -49,7 +49,7 @@ namespace NextUse.Services.DTO.ProductDTO
         public int Id { get; set; }
         public required string Content { get; set; }
         public required string CreatedAt { get; set; }
-        //public CommentProfileResponse? Profile { get; set; }
+        public CommentProfileResponse? Profile { get; set; }
     }
 
     public class ProductImageResponse

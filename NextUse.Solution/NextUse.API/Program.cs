@@ -5,13 +5,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Abstractions;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.Resource;
+using NextUse.API.Extensions;
 using NextUse.DAL.Extensions;
 using NextUse.DAL.Repository;
 using NextUse.DAL.Repository.Interface;
-using NextUse.Service.Services;
-using NextUse.Service.Services.Interface;
 using NextUse.Services.Services;
 using NextUse.Services.Services.Interface;
+
+
 
 namespace NextUse.API
 {
@@ -20,6 +21,15 @@ namespace NextUse.API
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAngularApp",
+                    builder => builder.WithOrigins("http://localhost:4200") // Allow Angular frontend
+                                      .AllowAnyMethod() // Allow all HTTP methods (GET, POST, PUT, DELETE, etc.)
+                                      .AllowAnyHeader() // Allow all headers
+                                      .AllowCredentials()); // Allow credentials if needed
+            });
 
             // Add services to the container.
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -48,11 +58,24 @@ namespace NextUse.API
             builder.Services.AddScoped<IImageRepository, ImageRepository>();
             builder.Services.AddScoped<IImageService, ImageService>();
 
-            //builder.Services.AddScoped<IProductRepository, ProductRepository>();
-            //builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped<IProductService, ProductService>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped<IMessageRepository, MessageRepository>();
             builder.Services.AddScoped<IMessageService, MessageService>();
+            builder.Services.AddAuthorization(options =>
+            {
+                // Sætter roller og "levels" af adgang op
+                options.AddPolicy("user", pb => pb
+                    .RequireClaim("level", "user", "support", "admin"));
+
+                options.AddPolicy("support", pb => pb
+                    .RequireClaim("level", "support", "admin"));
+
+                options.AddPolicy("admin", pb => pb
+                    .RequireClaim("level", "admin"));
+            });
+
 
             builder.Services.AddIdentity<User, IdentityRole>(options =>
             {
@@ -70,6 +93,7 @@ namespace NextUse.API
             builder.Services.AddDbContext<ApplicationDBContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
             var app = builder.Build();
+            app.UseCors("AllowAngularApp");
 
 
             // Configure the HTTP request pipeline.
@@ -77,10 +101,13 @@ namespace NextUse.API
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+                app.ApplyMigrations();
+                app.SeedDatabase();
             }
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

@@ -1,10 +1,10 @@
 ﻿using NextUse.DAL.Database.Entities;
 using NextUse.DAL.Repository.Interface;
-using NextUse.Service.DTO.AddressDTO;
-using NextUse.Service.Services.Interface;
+using NextUse.Services.DTO.AddressDTO;
+using NextUse.Services.Services.Interface;
 
 
-namespace NextUse.Service.Services
+namespace NextUse.Services.Services
 {
     public class AddressService : IAddressService
     {

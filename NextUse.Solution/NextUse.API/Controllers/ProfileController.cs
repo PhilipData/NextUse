@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using NextUse.Service.DTO.ProfileDTO;
-using NextUse.Service.Services.Interface;
+using NextUse.Services.DTO.ProfileDTO;
+using NextUse.Services.Services.Interface;
 
 namespace NextUse.API.Controllers
 {

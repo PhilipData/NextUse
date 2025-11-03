@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NextUse.Service.DTO.CategoryDTO
+namespace NextUse.Services.DTO.CategoryDTO
 {
     public class CategoryResponse
     {

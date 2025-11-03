@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NextUse.Service.DTO.RatingDTO
+namespace NextUse.Services.DTO.RatingDTO
 {
     public class RatingResponse
     {

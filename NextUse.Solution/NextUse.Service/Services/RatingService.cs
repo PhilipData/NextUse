@@ -1,14 +1,14 @@
 ﻿using NextUse.DAL.Database.Entities;
 using NextUse.DAL.Repository.Interface;
-using NextUse.Service.DTO.RatingDTO;
-using NextUse.Service.Services.Interface;
+using NextUse.Services.DTO.RatingDTO;
+using NextUse.Services.Services.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NextUse.Service.Services
+namespace NextUse.Services.Services
 {
     public class RatingService : IRatingService
     {
