@@ -15,5 +15,8 @@ namespace NextUse.DAL.Repository.Interface
         Task<Profile> AddAsync(Profile newProfile);
         Task<Profile> UpdateByIdAsync(int id, Profile updatedProfile);
         Task DeleteByIdAsync(int id);
+
+        Task<bool> BlockByIdAsync(int profileId);
+        Task<bool> UnblockByIdAsync(int profileId);
     }
 }

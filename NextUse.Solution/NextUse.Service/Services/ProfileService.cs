@@ -117,5 +117,15 @@ namespace NextUse.Service.Services
             await _profileRepository.DeleteByIdAsync(id);
         }
 
+        public async Task<bool> BlockByIdAsync(int profileId)
+        {
+            return await _profileRepository.BlockByIdAsync(profileId);
+        }
+
+        public async Task<bool> UnblockByIdAsync(int profileId)
+        {
+            return await _profileRepository.UnblockByIdAsync(profileId);
+        }
+
     }
 }

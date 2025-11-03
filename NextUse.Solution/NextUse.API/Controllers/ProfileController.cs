@@ -103,5 +103,43 @@ namespace NextUse.API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPatch]
+        [Route("{profileId}/block")]
+        public async Task<IActionResult> BlockById([FromRoute] int profileId)
+        {
+            try
+            {
+                bool result = await _profileService.BlockByIdAsync(profileId);
+
+                if (!result)
+                    return NotFound("Profile not found or already blocked.");
+
+                return Ok("Profile blocked successfully.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPatch]
+        [Route("{profileId}/unblock")]
+        public async Task<IActionResult> UnblockById([FromRoute] int profileId)
+        {
+            try
+            {
+                bool result = await _profileService.UnblockByIdAsync(profileId);
+
+                if (!result)
+                    return NotFound("Profile not found or already unblocked.");
+
+                return Ok("Profile unblocked successfully.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }

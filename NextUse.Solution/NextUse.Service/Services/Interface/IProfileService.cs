@@ -15,5 +15,8 @@ namespace NextUse.Service.Services.Interface
         Task<ProfileResponse> AddAsync(ProfileRequest newProfileRequest);
         Task<ProfileResponse> UpdateByIdAsync(int id, ProfileRequest updatedProfileRequest);
         Task DeleteByIdAsync(int id);
+
+        Task<bool> BlockByIdAsync(int profileId);
+        Task<bool> UnblockByIdAsync(int profileId);
     }
 }

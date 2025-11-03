@@ -90,5 +90,25 @@ namespace NextUse.DAL.Repository
             }
         }
 
+
+        public async Task<bool> BlockByIdAsync(int profileId)
+        {
+            var profile = await _context.Profiles.FindAsync(profileId);
+            if (profile == null || profile.IsBlocked) return false;
+
+            profile.IsBlocked = true;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> UnblockByIdAsync(int profileId)
+        {
+            var profile = await _context.Profiles.FindAsync(profileId);
+            if (profile == null || !profile.IsBlocked) return false;
+            profile.IsBlocked = false;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
     }
 }
