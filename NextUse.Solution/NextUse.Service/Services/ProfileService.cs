@@ -21,38 +21,86 @@ namespace NextUse.Services.Services
             _profileRepository = profileRepository;
         }
 
+        //private ProfileResponse MapProfileToProfileResponse(Profile profile)
+        //{
+        //    var profileResponse = new ProfileResponse
+        //    {
+        //        Id = profile.Id,
+        //        Name = profile.Name,
+        //        AverageRating = profile.Ratings.IsNullOrEmpty() ? 0 : profile.Ratings!.Where(r => r.ToProfileId == profile.Id).Average(r => r.Score),
+        //        RatingAmount = profile.Ratings.Count(),
+        //        Address = new ProfileAddressResponse
+        //        {
+        //            Id = profile.Address!.Id,
+        //            Country = profile.Address!.Country,
+        //            City = profile.Address.City,
+        //            PostalCode = profile.Address.PostalCode,
+        //            Street = profile.Address.Street,
+        //            Housenumber = profile.Address.HouseNumber
+        //        },
+        //        Products = profile.Products is null ? [] : profile.Products.Select(product => new ProfileProductResponse
+        //        {
+        //            Id = product.Id,
+        //            Title = product.Title,
+        //            Description = product.Description,
+        //            Price = product.Price,
+        //        })
+        //    };
+
+        //    if (!profile.Bookmarks.IsNullOrEmpty())
+        //    {
+        //        profileResponse.Bookmarks = profile.Bookmarks?.Select(bookmark => new ProfileBookmarkResponse
+        //        {
+        //            Id = bookmark.Id,
+        //            Product = bookmark.Product is null ? null : new BookmarkProductResponse
+        //            {
+        //                Id = bookmark.Product.Id,
+        //                Title = bookmark.Product.Title,
+        //                Description = bookmark.Product.Description,
+        //                Price = bookmark.Product.Price,
+        //            }
+        //        });
+        //    }
+
+        //    return profileResponse;
+        //}
+
         private ProfileResponse MapProfileToProfileResponse(Profile profile)
         {
             var profileResponse = new ProfileResponse
             {
                 Id = profile.Id,
                 Name = profile.Name,
-                AverageRating = profile.Ratings.IsNullOrEmpty() ? 0 : profile.Ratings!.Where(r => r.ToProfileId == profile.Id).Average(r => r.Score),
-                RatingAmount = profile.Ratings.Count(),
+                AverageRating = (profile.Ratings == null || !profile.Ratings.Any())
+                    ? 0
+                    : profile.Ratings.Where(r => r.ToProfileId == profile.Id).Average(r => r.Score),
+                RatingAmount = profile.Ratings?.Count() ?? 0,
                 Address = new ProfileAddressResponse
                 {
                     Id = profile.Address!.Id,
-                    Country = profile.Address!.Country,
+                    Country = profile.Address.Country,
                     City = profile.Address.City,
                     PostalCode = profile.Address.PostalCode,
                     Street = profile.Address.Street,
                     Housenumber = profile.Address.HouseNumber
                 },
-                Products = profile.Products is null ? [] : profile.Products.Select(product => new ProfileProductResponse
-                {
-                    Id = product.Id,
-                    Title = product.Title,
-                    Description = product.Description,
-                    Price = product.Price,
-                })
+                Products = profile.Products == null
+                    ? []
+                    : profile.Products.Select(product => new ProfileProductResponse
+                    {
+                        Id = product.Id,
+                        Title = product.Title,
+                        Description = product.Description,
+                        Price = product.Price,
+                    })
             };
 
-            if (!profile.Bookmarks.IsNullOrEmpty())
+            if (profile.Bookmarks != null && profile.Bookmarks.Any())
             {
-                profileResponse.Bookmarks = profile.Bookmarks?.Select(bookmark => new ProfileBookmarkResponse
+                profileResponse.Bookmarks = profile.Bookmarks.Select(bookmark => new ProfileBookmarkResponse
                 {
                     Id = bookmark.Id,
-                    Product = bookmark.Product is null ? null : new BookmarkProductResponse
+                    Product = bookmark.Product == null ? null : new BookmarkProductResponse
                     {
                         Id = bookmark.Product.Id,
                         Title = bookmark.Product.Title,
@@ -64,6 +112,7 @@ namespace NextUse.Services.Services
 
             return profileResponse;
         }
+
 
         private Profile MapProfileRequestToProfile(ProfileRequest profileRequest)
         {

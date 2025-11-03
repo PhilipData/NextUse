@@ -52,7 +52,7 @@ namespace NextUse.API.Controllers
 
         [HttpGet]
         [Route("{profileId}")]
-        public async Task<IActionResult> FindById([FromBody] int profileId)
+        public async Task<IActionResult> FindById([FromRoute] int profileId)
         {
             try
             {
