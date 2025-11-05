@@ -1,8 +1,11 @@
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
-  imports: [],
+  imports: [CommonModule, RouterLink, HttpClientModule],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css',
 })
