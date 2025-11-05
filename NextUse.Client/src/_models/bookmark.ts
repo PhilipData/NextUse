@@ -7,4 +7,4 @@ export interface Bookmark {
     profile?: Profile;
     productId?: number;
     product?: Product;
-}
+}// poke
