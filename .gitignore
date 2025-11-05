@@ -5,6 +5,7 @@
 
 # Migrations
 **/Migrations/
+
 # User-specific files
 *.rsuser
 *.suo
@@ -405,6 +406,9 @@ FodyWeavers.xsd
 !.vscode/launch.json
 !.vscode/extensions.json
 !.vscode/*.code-snippets
+
+# Environment Frontend
+/src/app/environments/
 
 # Local History for Visual Studio Code
 .history/

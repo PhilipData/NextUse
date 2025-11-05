@@ -1,4 +1,4 @@
-﻿namespace NextUse.Service
+﻿namespace NextUse.Services
 {
     public class Class1
     {
