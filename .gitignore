@@ -408,7 +408,7 @@ FodyWeavers.xsd
 !.vscode/*.code-snippets
 
 # Environment Frontend
-/src/app/environments/
+**/src/app/environments/
 
 # Local History for Visual Studio Code
 .history/
