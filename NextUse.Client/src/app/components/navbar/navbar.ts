@@ -1,20 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Component, OnInit, Inject } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../_services/auth.service';
 import { Profile } from '../../_models/profile';
 import { User } from '../../_models/user';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, CommonModule],
+  standalone: true,
+  imports: [RouterModule, CommonModule],
   templateUrl: './navbar.html',
-  styleUrl: './navbar.css',
+  styleUrls: ['./navbar.css'],
 })
 export class Navbar implements OnInit {
   user:User | null = null;
-  profile?: Profile | null;
-  constructor(public authService:AuthService, private router:Router,) {}
+  constructor(public authService: AuthService, @Inject(Router) private router: Router) {}
+ 
 
   ngOnInit() {
     this.user = this.authService.user;  
