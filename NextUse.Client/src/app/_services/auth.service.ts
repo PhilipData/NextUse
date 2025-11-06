@@ -92,8 +92,8 @@ export class AuthService {
   // Logout method
   logout(): void {
     this.http.get(this.apiUrl + "/logout", { withCredentials: true }).subscribe(() => {
-      this.userSubject.next(null);
-      this.profileSubject.next(null);
+       this.userSubject.next(null);
+       this.profileSubject.next(null);
     });
   }
 

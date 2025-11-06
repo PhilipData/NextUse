@@ -2,10 +2,10 @@
   "name": "next-use.client",
   "version": "0.0.0",
   "scripts": {
-  "start": "ng serve",
-  "build": "ng build",
-  "test": "ng test"
-},
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test"
+  },
   "prettier": {
     "printWidth": 100,
     "singleQuote": true,

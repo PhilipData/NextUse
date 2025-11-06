@@ -1,1 +1,38 @@
-<p>login works!</p>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header text-center bg-dark text-white">
+                        <h4>Login</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- Email -->
+                                <div class="mb-3">
+                                    <label class="form-label">Email</label>
+                                    <input type="text" formControlName="email" class="form-control"
+                                        [ngClass]="{'is-invalid': loginForm.get('email')?.invalid && loginForm.get('email')?.touched}">
+                                    <div class="invalid-feedback">Please insert correct info!</div>
+                                </div>
+    
+                                <!-- Password -->
+                                <div class="mb-3">
+                                    <label class="form-label">Password</label>
+                                    <input type="password" formControlName="password" class="form-control"
+                                        [ngClass]="{'is-invalid': loginForm.get('password')?.invalid && loginForm.get('password')?.touched}">
+                                    <div class="invalid-feedback">Please insert correct info!</div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Submit Button -->
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-dark w-100" [disabled]="loginForm.invalid">Login</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    
