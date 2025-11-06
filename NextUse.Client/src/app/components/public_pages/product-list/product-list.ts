@@ -1,16 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { Bookmark } from '../../../_models/bookmark';
+import { Category } from '../../../_models/category';
+import { Product } from '../../../_models/product';
 import { Profile } from '../../../_models/profile';
 import { AuthService } from '../../../_services/auth.service';
 import { BookmarkService } from '../../../_services/bookmark.service';
 import { CategoryService } from '../../../_services/category.service';
 import { ProductService } from '../../../_services/product.service';
-import { Product } from '../../../_models/product';
-import { Category } from '../../../_models/category';
 import { SortOrder } from '../../../_utils/sort.enum';
-import { Bookmark } from '../../../_models/bookmark';
 
 @Component({
   selector: 'app-product-list',
@@ -18,7 +18,9 @@ import { Bookmark } from '../../../_models/bookmark';
   templateUrl: './product-list.html',
   styleUrl: './product-list.css',
 })
-export class ProductList implements OnInit {
+export class ProductList {
+
+  constructor(private authService:AuthService, private productService:ProductService, private categoryService:CategoryService, private bookmarkService:BookmarkService) {}
 
   profile!: Profile;
 
@@ -32,10 +34,8 @@ export class ProductList implements OnInit {
   searchQuery: string = '';
   bookmarks: Bookmark[] = [];
   showOnlyBookmarked: boolean = false;
-
-  constructor(private authService:AuthService, private productService:ProductService, private categoryService:CategoryService, private bookmarkService:BookmarkService) {}
-
-
+  
+  
   ngOnInit(): void {
     this.productService.getAll().subscribe(x => {
       this.products = x;
@@ -94,5 +94,4 @@ export class ProductList implements OnInit {
         break;
     }
   }
-
 }
