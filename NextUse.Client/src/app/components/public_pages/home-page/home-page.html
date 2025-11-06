@@ -11,7 +11,7 @@
       <div class="product-carousel">
   
         <!-- 4x featured liste, så den altid har data og kan køre i ring -->
-        <!-- @for (i of timesToDuplicate; track $index) {
+        @for (i of timesToDuplicate; track $index) {
         <div class="product-card" *ngFor="let product of featuredProducts" [routerLink]="['/products', product.id]">
           <div class="product-image">
             <img [src]="product.images[0].blobUrl" alt="{{ product.title }}">
@@ -22,7 +22,7 @@
             <p>{{ product.price }} kr</p>
           </div>
         </div>
-        } -->
+        }
       </div>
       <div class="d-flex justify-content-center mt-4">
         <div class="browse-button" routerLink="/products">Browse all products</div>
