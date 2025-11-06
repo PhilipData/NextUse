@@ -2,6 +2,9 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CategoryService } from '../../../_services/category.service';
+import { ProductService } from '../../../_services/product.service';
+import { Product } from '../../../_models/product';
 
 @Component({
   selector: 'app-home-page',
@@ -11,13 +14,13 @@ import { RouterLink } from '@angular/router';
 })
 export class HomePage implements OnInit {
 
-  //featuredProducts: Product[] = [];
+  featuredProducts: Product[] = [];
   categories: any[] = []; // Replace `any` with your actual Category model, if applicable
   timesToDuplicate: number[] = Array(4).fill(0); // workaround
 
   constructor(
-    //private productService: ProductService,
-    //private categoryService: CategoryService
+    private productService: ProductService,
+    private categoryService: CategoryService
   ) {}
 
   ngOnInit(): void {
@@ -26,7 +29,7 @@ export class HomePage implements OnInit {
   }
 
   loadFeaturedProducts(): void {
-    /*this.productService.getAll().subscribe(
+    this.productService.getAll().subscribe(
       (products: Product[]) => {
         // Filter out only the featured products if there is an `isFeatured` flag
         // this.featuredProducts = products.filter(product => product.profile);
@@ -36,11 +39,11 @@ export class HomePage implements OnInit {
         console.error('Error loading products:', error);
       }
     );
-    */
+    
   }
 
   loadCategories(): void {
-    /*
+    
     this.categoryService.getAll().subscribe(
       (categories: any[]) => {
         this.categories = categories; // Replace `any` with your actual Category model
@@ -49,6 +52,6 @@ export class HomePage implements OnInit {
         console.error('Error loading categories:', error);
       }
     );
-    */
+    
   }
 }

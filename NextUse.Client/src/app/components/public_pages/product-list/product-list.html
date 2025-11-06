@@ -1,1 +1,60 @@
-<p>product-list works!</p>
+<!-- Hero Section -->
+<img src="assets/images/product-list-header.png" class="container my-4 mx-auto d-block">
+
+
+<!-- Filters Section -->
+<div class="container my-4">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
+    
+        <div class="title-and-bookmark">
+            <h1>All products</h1>
+            
+            <button class="btn btn-dark btn-bookmark" *ngIf="profile" (click)="toggleBookmarkedView()">
+                <i class="bi-bookmark fa-solid fa-bookmark"
+                [ngClass]="showOnlyBookmarked ? 'bi-bookmark-fill' : 'bi-bookmark'"></i>
+            </button>
+        </div>
+    
+        <button class="btn btn-dark mt-2 mt-md-0" [routerLink]="['/products/create']" *ngIf="profile">Create a product</button>
+    </div>
+    <div class="row mb-4">
+        <div class="col-12 mb-2">
+            <input 
+            type="text" 
+            class="form-control" 
+            placeholder="Search products..." 
+            [(ngModel)]="searchQuery" 
+            (input)="updateFilteredProducts()" 
+            aria-label="Search products"
+            />
+        </div>
+        <div class="col-md-6 col-12 mb-2 mb-md-0">
+            <select [(ngModel)]="selectedCategory" (change)="updateFilteredProducts()" class="filter-select" aria-label="Categories">
+                <option [ngValue]="null" selected [hidden]="!selectedCategory">All categories</option>
+                <option *ngFor="let category of categories" [hidden]="category === selectedCategory" [ngValue]="category">{{ category.name }}</option>
+            </select>
+        </div>
+        <div class="col-md-6 col-12">
+            <select [(ngModel)]="selectedSort" (change)="sortProducts()" class="filter-select" aria-label="Sort by price">
+                <option [ngValue]="SortOrder.None" disabled selected hidden>Sort by</option>
+                <option [ngValue]="SortOrder.PriceLowToHigh">Price: Low to High</option>
+                <option [ngValue]="SortOrder.PriceHighToLow">Price: High to Low</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12" *ngFor="let product of filteredProducts">
+            <div class="product-card border border-dark" [routerLink]="['/products', product.id]">
+                <div class="product-image">
+                    <img *ngIf="product.images[0]" [src]="product.images[0].blobUrl" class="img-fluid" [alt]="product.title">
+                    <div class="product-price">{{product.price}} kr.</div>
+                </div>
+                <div class="product-card-details">
+                    <div class="product-location mb-2">{{product.address?.city}}</div>
+                    <div class="product-title">{{product.title}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

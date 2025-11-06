@@ -1,0 +1,86 @@
+.title-and-bookmark {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.btn-bookmark {
+    width: 50px;
+    height: 40px;
+}
+
+.bi-bookmark {
+    color: white;
+}
+
+.bi-bookmark-fill {
+    color: #ff6347;
+}
+
+.product-card {
+    border: 1px solid #e3e3e3;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.1s ease-in;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-image {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+.product-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.9));
+}
+
+.img-fluid {
+    object-position: center;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.product-price {
+    position: absolute;
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
+    bottom: 10px;
+    left: 15px;
+    font-size: 16px;
+    z-index: 100;
+}
+
+.product-card-details {
+    padding: 10px 15px;
+}
+
+.product-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.product-location {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.filter-select {
+    width: 100%;
+    padding: 10px;
+}
