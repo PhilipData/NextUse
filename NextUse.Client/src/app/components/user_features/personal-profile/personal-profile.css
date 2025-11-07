@@ -1,0 +1,115 @@
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+.profile-card {
+    border: 1px solid #e3e3e3;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background: #fff;
+    transition: transform 0.1s ease-in;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.profile-name {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.profile-info h5 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.profile-section {
+    margin-top: 15px;
+}
+
+.profile-section h5 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.profile-section p {
+    font-size: 14px;
+    margin: 2px 0;
+}
+
+.rating {
+    color: #ff9800;
+    font-weight: bold;
+}
+
+ul {
+    padding-left: 15px;
+}
+
+li {
+    font-size: 14px;
+}
+
+.product-image {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border: 2px solid darkgray;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.1s ease-out;
+    box-shadow: 0 3px 5px 0 darkgray;
+}
+
+.product-image:hover {
+    transform: scale(1.15)
+}
+
+.img-fluid {
+    object-position: center;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    overflow: visible;
+}
+
+.star-rating {
+    display: inline-block;
+    font-size: 30px;
+    position: relative;
+    width: fit-content;
+    padding: 0;
+    unicode-bidi: bidi-override;
+    color: #ddd;
+}
+
+.star-rating::before {
+    content: "★★★★★";
+    letter-spacing: 3px;
+}
+
+.star-rating .stars-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #fd7a63;
+}
+
+.stars-fill::before {
+    content: "★★★★★";
+    letter-spacing: 3px;
+}

@@ -1,1 +1,76 @@
-<p>personal-profile works!</p>
+<div *ngIf="profile" class="container my-4">
+    <div class="card p-4 shadow-lg">
+        <div class="row">
+            <div class="col-md-3 text-center">
+                <div class="profile-img border p-3">
+                    <img src="https://via.placeholder.com/150" class="img-fluid rounded" alt="Profile Picture">
+                    <p class="fw-bold mt-2">Profile Picture</p>
+                </div>
+                <button class="btn btn-primary mt-3 w-100" *ngIf="isOwner">Edit Profile</button>
+                <div class="row justify-content-center">
+                    <div class="star-rating">
+                        <div class="stars-fill" [style.width]="starWidth"></div>
+                    </div>
+
+                    <div class="fs-6 text-muted">based on {{ profile.ratingAmount }} rating(s)</div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <h4>{{ profile.name }}</h4>
+                 <p>Email: {{ profile.messages}}</p>
+
+                <hr>
+
+                <div *ngIf="profile.address" class="border p-3 mt-3">
+                    <h5 class="fw-bold">Address</h5>
+                    <p><strong>Country:</strong> {{ profile.address.country }}</p>
+                    <p><strong>City:</strong> {{ profile.address.city }}</p>
+                    <p *ngIf="isOwner"><strong>Street:</strong> {{ profile.address.street }}</p>
+                    <p *ngIf="isOwner"><strong>House Number:</strong> {{ profile.address.houseNumber }}</p>
+                    <p *ngIf="isOwner"><strong>Postal Code:</strong> {{ profile.address.postalCode }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <h5 class="fw-bold">All Products</h5>
+            <div class="border p-3 bg-light">
+                <div *ngFor="let product of profileProducts" class="d-flex align-items-center border-bottom py-4">
+                    <div class="product-image" [routerLink]="['/products', product.id]">
+                        <img class="img-fluid" [src]="product.images[0].blobUrl"/>
+                    </div>
+                    <div class="ms-3">
+                        <span class="badge bg-secondary">{{product.category?.name}}</span>
+                    </div>
+                    <div class="ms-3 flex-grow-1">
+                        <strong>{{product.title}}</strong>
+                    </div>
+                    <div class="me-3">
+                        <span>{{product.price}} kr.</span>
+                    </div>
+                    <button class="btn btn-sm btn-primary me-2" *ngIf="isOwner">Edit</button>
+                    <button class="btn btn-sm btn-danger" *ngIf="isOwner" (click)="deleteProduct(product.id)">🗑</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div *ngIf="isOwner && profile.bookmarks?.length" class="mt-4">
+            <h5 class="fw-bold">All Bookmarks</h5>
+            <div class="bg-dark text-white p-2 rounded">
+                <div class="d-flex overflow-auto">
+                    <div *ngFor="let bookmark of profile.bookmarks" class="p-2">
+                        <div class="card" style="width: 150px;">
+                            <div class="card-body text-center">
+                                <img class="img-thumbnail"
+                                    [src]="bookmark.product ? bookmark.product.images[0].blobUrl : ''" />
+                                <p class="mt-2">{{ bookmark.product?.title }}</p>
+                                <button class="btn btn-primary btn-sm">Go To</button>
+                                <button class="btn btn-danger btn-sm">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>

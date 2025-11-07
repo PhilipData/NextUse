@@ -31,7 +31,7 @@ namespace NextUse.DAL.Extensions
               .HasOne(r => r.FromProfile)
               .WithMany()
               .HasForeignKey(r => r.FromProfileId)
-              .OnDelete(DeleteBehavior.NoAction); // NOTE: Hvis Cascade ønskes, skal det gøres gennem koden
+              .OnDelete(DeleteBehavior.NoAction); // NOTE: If Cascade is needed, do it through the code
 
             builder.Entity<Profile>()
                 .HasOne(p => p.Address)
@@ -60,14 +60,14 @@ namespace NextUse.DAL.Extensions
             builder.Entity<Product>()
                 .HasOne(r => r.Address)
                 .WithOne(a => a.Product)
-                .OnDelete(DeleteBehavior.NoAction); // NOTE: Cascade ønskes, skal det gøres gennem koden
+                .OnDelete(DeleteBehavior.NoAction); // NOTE: If Cascade is needed, do it through the code
 
             builder.Entity<Product>()
                 .HasOne(p => p.Category)
                 .WithMany(c => c.Products)
                 .HasForeignKey(p => p.CategoryId)
-                .OnDelete(DeleteBehavior.NoAction); // NOTE: Cascade ønskes, skal det gøres gennem koden
-                                                   // REMEMBER THIS SHIT WHEN WE WORK ON FRONT END 
+                .OnDelete(DeleteBehavior.NoAction); // NOTE: If Cascade is needed, do it through the code
+                                                    // REMEMBER THIS SHIT WHEN WE WORK ON FRONT END 
 
 
             builder.Entity<Product>()
