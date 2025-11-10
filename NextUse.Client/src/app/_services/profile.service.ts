@@ -30,12 +30,8 @@ export class ProfileService {
   delete(profileId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${profileId}`);
   }
-
-
   
-
-  // ✅ Fetch the currently logged-in user (NEW METHOD)
   getLoggedInUser(): Observable<Profile> {
-    return this.http.get<Profile>(`${this.apiUrl}/me`); // Adjust API endpoint if needed
+    return this.http.get<Profile>(`${this.apiUrl}/me`);
   }
 }
