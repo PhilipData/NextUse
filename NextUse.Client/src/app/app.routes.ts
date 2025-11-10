@@ -18,11 +18,11 @@ export const routes: Routes = [
     { path: 'login', component: Login, },
     { path: 'register', component: Register, canActivate: [noAuthGuard] },
     { path: 'products', component: ProductList },
-    { path: 'product/:productId', component: ProductDetails },
-    { path:'admindashboard', component: Admindashboard, canActivate: [authGuard], data: { roles: [Role.Admin] }},
-    { path: 'messages', component: ChatWidget, canActivate: [authGuard]},
+    { path: 'home', component: HomePage },
+    { path: 'products/:productId', component: ProductDetails },
+     { path:'admindashboard', component: Admindashboard, canActivate: [authGuard], data: { roles: [Role.Admin] }},
+       {path: 'messages', component: ChatWidget, canActivate: [authGuard]},
     { path: 'profile/:profileId', component: PersonalProfile },
-    { path: 'products/create', component: CreateProduct, canActivate: [authGuard] },
-
+    { path: 'create/products', component: CreateProduct, canActivate: [authGuard] },
 
 ];
