@@ -41,6 +41,7 @@ unblockProfile(profileId: number): Observable<any> {
 }
   
 
+
   //  Fetch the currently logged-in user (NEW METHOD)
   getLoggedInUser(): Observable<Profile> {
     return this.http.get<Profile>(`${this.apiUrl}/me`); // Adjust API endpoint if needed
