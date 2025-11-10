@@ -15,7 +15,7 @@ import { ProfileService } from '../../../_services/profile.service';
 })
 export class ChatWidget {
  isOpen = signal(false);
-  messages = signal<Message[]>([]); // Always initialized
+  messages = signal<Message[]>([]); // Always initialized - Signal connecting to another ? // return to this
   users = signal<Profile[]>([]);
   selectedUserId: number | null = null;
   newMessage = '';
@@ -31,7 +31,6 @@ export class ChatWidget {
     this.loadUsers();
   }
 
-  //  Load logged-in user profile
   loadLoggedInUser() {
     this.authService.getProfileForUser().subscribe((profile) => {
       if (profile) {
@@ -41,7 +40,6 @@ export class ChatWidget {
     });
   }
 
-  //  Fetch all user profiles
   loadUsers() {
     this.profileService.getAll().subscribe((users) => {
       if (users) {
@@ -51,11 +49,8 @@ export class ChatWidget {
     });
   }
 
-
   loadMessages() {
     if (!this.myProfileId || !this.selectedUserId) return;
-
-
 
     this.messageService.getAll().subscribe((messages) => {
       if (messages) {
@@ -68,7 +63,7 @@ export class ChatWidget {
         );
 
         console.log('Filtered Messages:', filteredMessages);
-        this.messages.set(filteredMessages); // Update chat messages
+        this.messages.set(filteredMessages); // When message is send to a user it update the the history, sort of
       }
     });
   }
@@ -76,13 +71,11 @@ export class ChatWidget {
 
 
 
-  //  Get selected user name safely
   getSelectedUserName(): string {
     const user = this.users().find(user => user.id === this.selectedUserId);
     return user ? user.name : 'Unknown';
   }
 
-  //  Toggle chat window
   toggleChat() {
 
     this.authService.getProfileForUser().subscribe((profile) => {
@@ -93,7 +86,6 @@ export class ChatWidget {
     });
   }
 
-  //  Send message safely
   sendMessage() {
     if (!this.newMessage.trim() || !this.selectedUserId || !this.myProfileId) return;
 

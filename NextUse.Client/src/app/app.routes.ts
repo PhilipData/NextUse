@@ -14,12 +14,13 @@ import { ChatWidget } from './components/public_pages/chat-widget/chat-widget';
 
 export const routes: Routes = [
     { path: '', component: HomePage },
+    { path: 'home', component: HomePage },
     { path: 'login', component: Login, },
     { path: 'register', component: Register, canActivate: [noAuthGuard] },
     { path: 'products', component: ProductList },
-    { path: 'products/:productId', component: ProductDetails },
-     { path:'admindashboard', component: Admindashboard, canActivate: [authGuard], data: { roles: [Role.Admin] }},
-       {path: 'messages', component: ChatWidget, canActivate: [authGuard]},
+    { path: 'product/:productId', component: ProductDetails },
+    { path:'admindashboard', component: Admindashboard, canActivate: [authGuard], data: { roles: [Role.Admin] }},
+    { path: 'messages', component: ChatWidget, canActivate: [authGuard]},
     { path: 'profile/:profileId', component: PersonalProfile },
     { path: 'products/create', component: CreateProduct, canActivate: [authGuard] },
 

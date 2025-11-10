@@ -73,23 +73,21 @@ export class AuthService {
     );
   }
 
-  // Bliver kørt en gang ved første load af hjemmesiden og sørger for at vores bruger er loadet, inden vi kører noget andet
-  // (så vi altid ved, at brugeren kun er null, fordi den ikke findes, og altså ikke fordi den ikke er færdig med at loade den endnu)
+  // Gets run one time at the first run of the website to make sure our useres is loaded, before anything else is being executed
+  //(this is to make sure that we always know the user is always presented as null, as it doesn't exists and not because it failed to load the user)
+
   initializeApp(): Promise<void> {
     return this.loadUser();
   }
 
-  // Login method
   login(loginForm: any) {
     return this.http.post<any>(this.apiUrl + "/login", loginForm, {withCredentials: true})
   }
 
-  // Register method
   register(registerForm: any) {
     return this.http.post<any>(this.apiUrl + "/register", registerForm, {withCredentials: true})
   }
 
-  // Logout method
   logout(): void {
     this.http.get(this.apiUrl + "/logout", { withCredentials: true }).subscribe(() => {
        this.userSubject.next(null);

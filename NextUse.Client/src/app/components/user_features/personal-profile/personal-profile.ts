@@ -46,7 +46,7 @@ export class PersonalProfile implements OnInit {
 
   editProfile() {
     console.log('Edit Profile Clicked');
-    // Add logic to navigate to an edit profile page or open a modal
+    // When there is time make navigation to the edit profile page or use modal
   }
 
   deleteBookmark(index: number) {
@@ -57,12 +57,12 @@ export class PersonalProfile implements OnInit {
 
   goToBookmark(bookmark: any) {
     console.log('Navigating to:', bookmark);
-    // Add logic to navigate to the bookmark page
+    // this also needs navigation to bookmark page
   }
 
   editAdvert(advert: any) {
     console.log('Editing Advert:', advert);
-    // Add logic for editing adverts
+    // add the logic to editing product
   }
 
   deleteProduct(productId: number) {

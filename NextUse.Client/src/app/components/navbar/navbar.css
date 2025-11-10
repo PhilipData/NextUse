@@ -1,4 +1,3 @@
-/* Basic Navbar Styling */
 .navbar {
   padding: 10px 20px;
   font-family: 'Arial', sans-serif;
@@ -12,7 +11,7 @@
 }
 
 .navbar-brand:hover {
-  color: #ff6347; /* Slight hover effect */
+  color: #ff6347;
 }
 
 .navbar-nav .nav-item {
@@ -30,24 +29,19 @@
   color: #ff6347;
 }
 
-/* Style for active links */
 .navbar-nav .nav-item.active .nav-link {
-  color: #ff6347 !important; /* Highlight active links */
+  color: #ff6347 !important;
   font-weight: bold;
 }
 
-/* Navbar collapse behavior */
 .collapse {
   transition: height 0.4s ease;
 }
 
-/* For better button visibility */
 .navbar-toggler {
   border: none;
   outline: none;
 }
-
-
 
 /* Responsive Design */
 @media (max-width: 991px) {

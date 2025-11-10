@@ -1,9 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import is from '@angular/common/locales/is';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { only } from 'node:test';
 import { Product } from '../../../_models/product';
 import { CategoryService } from '../../../_services/category.service';
 import { ProductService } from '../../../_services/product.service';
@@ -17,7 +15,7 @@ import { ProductService } from '../../../_services/product.service';
 export class HomePage implements OnInit {
 
   featuredProducts: Product[] = [];
-  categories: any[] = []; // Replace `any` with your actual Category model, if applicable
+  categories: any[] = []; // Replace `any` with your actual Category model, if it makes sense
   timesToDuplicate: number[] = Array(4).fill(0); // workaround
 
   constructor(

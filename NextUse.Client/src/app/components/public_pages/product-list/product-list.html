@@ -1,4 +1,4 @@
-<!-- Hero Section -->
+<!-- Hero Section, just to be clear this is what the centered of the screen is called  -->
 <img src="../../../../assets/images/product-list-header.png" class="container my-4 mx-auto d-block">
 
 <!-- Filters Section -->
@@ -14,7 +14,7 @@
             </button>
         </div>
     
-        <button class="btn btn-dark mt-2 mt-md-0" [routerLink]="['/products/create']" *ngIf="profile">Create a product</button>
+        <button class="btn btn-dark mt-2 mt-md-0" [routerLink]="['/products/create']">Create a product</button>
     </div>
     <div class="row mb-4">
         <div class="col-12 mb-2">
@@ -44,7 +44,7 @@
 
     <div class="row g-4">
         <div class="col-lg-3 col-md-4 col-sm-6 col-12" *ngFor="let product of filteredProducts">
-            <div class="product-card border border-dark" [routerLink]="['/products', product.id]">
+            <div class="product-card border border-dark" [routerLink]="['/product', product.id]">
                 <div class="product-image">
                     <img *ngIf="product.images[0]" [src]="product.images[0].blobUrl" class="img-fluid" [alt]="product.title">
                     <div class="product-price">{{product.price}} kr.</div>

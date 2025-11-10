@@ -1,7 +1,6 @@
-/* Global Styles */
 body {
   font-family: 'Arial', sans-serif;
-  background-color: #f7fafc; /* Light gray background */
+  background-color: #f7fafc;
   color: #4b5563;
   margin: 0;
   padding: 0;
@@ -12,9 +11,8 @@ body {
   margin: 0 auto;
 }
 
-/* Header Styling */
 header {
-  background-color: #ffffff; /* White background for header */
+  background-color: #ffffff;
   padding: 80px 20px;
   color: #333;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -29,7 +27,6 @@ header p {
   font-weight: 300;
 }
 
-/* Featured Products Section */
 .product-section {
   padding: 0 1rem;
 }
@@ -52,7 +49,7 @@ header p {
   content: "";
   position: absolute;
   top: 0;
-  width: 40px; /* Adjust the fade width */
+  width: 40px;
   height: 100%;
   z-index: 2;
   pointer-events: none;
@@ -72,7 +69,7 @@ header p {
   display: flex;
   gap: 16px;
   position: relative;
-  width: max-content; /* Ensures it wraps properly */
+  width: max-content;
   animation: scrollProducts 20s linear infinite;
 }
 

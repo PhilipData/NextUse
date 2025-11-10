@@ -98,7 +98,6 @@ export class CreateProduct {
   }
 
   removeImage(index: number) {
-    // Remove image from the previews and files array
     this.imagePreviews.splice(index, 1);
     this.imageFiles.splice(index, 1);
   }

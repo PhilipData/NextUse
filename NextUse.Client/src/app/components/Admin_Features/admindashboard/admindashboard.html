@@ -1,5 +1,4 @@
 <div class="admin-layout">
-  <!-- Sidebar -->
   <nav class="sidebar">
     <h2 class="logo"> Admin Panel</h2>
     <ul class="menu">
@@ -9,9 +8,7 @@
     </ul>
   </nav>
 
-  <!-- Main Content -->
   <main class="main-content">
-    <!-- Header -->
     <div class="header">
       <div>
         <h1>Welcome, Admin </h1>
@@ -24,7 +21,7 @@
       />
     </div>
 
-    <!-- Create Category Section -->
+    <!-- Create Category -->
     <div
       *ngIf="showCreateCategory && currentView === 'categories'"
       class="card shadow-sm border-0 mb-4 animate-fade"
@@ -143,7 +140,6 @@
       </div>
     </div>
 
-    <!-- Edit Category Modal -->
     <div *ngIf="showEditModal" class="modal fade show d-block animate-fade">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-0 shadow">

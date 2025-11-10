@@ -18,8 +18,8 @@ import { ProfileService } from '../../../_services/profile.service';
 export class Admindashboard implements OnInit {
    constructor(private categoryService: CategoryService, private auth: AuthService, private profileService: ProfileService) {}
 
-user: User | null = null; // declare first
-
+   
+  user: User | null = null;
   showCreateCategory = false; // Controls form visibility
   newCategory = ''; // Holds the new category name
   categories: Category[] = []; // Holds the list of categories
@@ -36,24 +36,20 @@ user: User | null = null; // declare first
     this.loadCategories(); // Load categories on component initialization
   }
 
-  // Toggle Create Category Form
   toggleCreateCategory() {
     this.showCreateCategory = !this.showCreateCategory;
   }
 
-  // Switch to User Management view
   showUserManagement() {
     this.currentView = 'users';
-    this.loadProfiles(); // Load profiles when switching to user management
+    this.loadProfiles();
   }
 
-  // Switch to Category Management view
   showCategoryManagement() {
     this.currentView = 'categories';
-    this.loadCategories(); // Load categories when switching to category management
+    this.loadCategories();
   }
 
-  // Fetch all user profiles
   loadProfiles() {
     this.profileService.getAll().subscribe({
       next: (data) => (this.profiles = data),
@@ -62,20 +58,20 @@ user: User | null = null; // declare first
   }
 
   // Delete a user profile
-  deleteProfile(profile: Profile) {
-    if (confirm(`Are you sure you want to delete user "${profile.name}"?`)) {
-      this.profileService.delete(profile.id).subscribe({
-        next: () => {
-          this.profiles = this.profiles.filter(p => p.id !== profile.id);
-          alert('User deleted successfully!');
-        },
-        error: (err) => {
-          console.error('Failed to delete user:', err);
-          alert('Failed to delete user. Please try again.');
-        }
-      });
-    }
-  }
+  // deleteProfile(profile: Profile) {
+  //   if (confirm(`Are you sure you want to delete user "${profile.name}"?`)) {
+  //     this.profileService.delete(profile.id).subscribe({
+  //       next: () => {
+  //         this.profiles = this.profiles.filter(p => p.id !== profile.id);
+  //         alert('User deleted successfully!');
+  //       },
+  //       error: (err) => {
+  //         console.error('Failed to delete user:', err);
+  //         alert('Failed to delete user. Please try again.');
+  //       }
+  //     });
+  //   }
+  // }
 
 
 toggleBlock(profile: Profile) {
@@ -101,16 +97,14 @@ toggleBlock(profile: Profile) {
 }
 
 
-  // Load categories
   loadCategories() {
-    this.showCreateCategory = false; // Ensure form is hidden when viewing categories
+    this.showCreateCategory = false;
     this.categoryService.getAll().subscribe({
       next: (data) => (this.categories = data),
       error: (err) => console.error('Failed to load categories:', err)
     });
   }
 
-  // Save Category
   saveCategory() {
     if (this.newCategory.trim()) {
       const newCategory: Category = {
@@ -120,11 +114,11 @@ toggleBlock(profile: Profile) {
 
       this.categoryService.create(newCategory).subscribe({
         next: (createdCategory) => {
-          this.categories.push(createdCategory); // Add the new category to the list
+          this.categories.push(createdCategory);
           console.log('Category Created:', createdCategory);
           alert(`Category "${createdCategory.name}" created successfully!`);
           this.newCategory = ''; // Reset input field
-          this.showCreateCategory = false; // Hide form after saving
+          this.showCreateCategory = false;
         },
         error: (err) => {
           console.error('Failed to create category:', err);
@@ -136,14 +130,12 @@ toggleBlock(profile: Profile) {
     }
   }
 
-  // Edit Category
   editCategory(category: Category) {
     this.editCategoryId = category.id;
     this.editCategoryName = category.name;
     this.showEditModal = true;
   }
 
-  // Update Category
   updateCategory() {
     if (this.editCategoryName.trim() && this.editCategoryId !== null) {
       const updatedCategory: Category = {
@@ -170,12 +162,11 @@ toggleBlock(profile: Profile) {
     }
   }
 
-  // Delete Category
   deleteCategory(category: Category) {
     if (confirm(`Are you sure you want to delete "${category.name}"?`)) {
       this.categoryService.delete(category.id).subscribe({
         next: () => {
-          this.categories = this.categories.filter(cat => cat.id !== category.id); // Remove the category from the list
+          this.categories = this.categories.filter(cat => cat.id !== category.id);
           alert('Category deleted successfully!');
         },
         error: (err) => {
@@ -186,7 +177,6 @@ toggleBlock(profile: Profile) {
     }
   }
 
-  // Close Edit Modal
   closeEditModal() {
     this.showEditModal = false;
     this.editCategoryId = null;
