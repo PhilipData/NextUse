@@ -14,7 +14,9 @@
             </button>
         </div>
     
-        <button class="btn btn-dark mt-2 mt-md-0" [routerLink]="['/products/create']" *ngIf="profile">Create a product</button>
+        <!-- <button class="btn btn-dark mt-2 mt-md-0" [routerLink]="['/create/products']" *ngIf="profile">Create a product</button> -->
+        <button class="btn btn-dark" [routerLink]="['/create/products']">Create a product</button>
+
     </div>
     <div class="row mb-4">
         <div class="col-12 mb-2">
