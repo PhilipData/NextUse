@@ -6,6 +6,10 @@ import { Login } from './components/public_pages/login/login';
 import { ProductList } from './components/public_pages/product-list/product-list';
 import { CreateProduct } from './components/user_features/create-product/create-product';
 import { PersonalProfile } from './components/user_features/personal-profile/personal-profile';
+import { Admindashboard } from './components/Admin_Features/admindashboard/admindashboard';
+import { Role } from './_utils/role.enum';
+import { ProductDetails } from './components/public_pages/product-details/product-details';
+import { ChatWidget } from './components/public_pages/chat-widget/chat-widget';
 
 
 export const routes: Routes = [
@@ -13,6 +17,9 @@ export const routes: Routes = [
     { path: 'login', component: Login, },
     { path: 'register', component: Register, canActivate: [noAuthGuard] },
     { path: 'products', component: ProductList },
+    { path: 'products/:productId', component: ProductDetails },
+     { path:'admindashboard', component: Admindashboard, canActivate: [authGuard], data: { roles: [Role.Admin] }},
+       {path: 'messages', component: ChatWidget, canActivate: [authGuard]},
     { path: 'profile/:profileId', component: PersonalProfile },
     { path: 'products/create', component: CreateProduct, canActivate: [authGuard] },
 

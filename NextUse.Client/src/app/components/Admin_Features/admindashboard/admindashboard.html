@@ -1,1 +1,182 @@
-<p>admindashboard works!</p>
+<div class="admin-layout">
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <h2 class="logo"> Admin Panel</h2>
+    <ul class="menu">
+      <li (click)="toggleCreateCategory()">Create Category</li>
+      <li (click)="showCategoryManagement()">Manage Categories</li>
+      <li (click)="showUserManagement()">User Management</li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Header -->
+    <div class="header">
+      <div>
+        <h1>Welcome, Admin </h1>
+        <p class="text-muted">Manage your platform efficiently.</p>
+      </div>
+      <img
+        src="assets/images/product-list-header.png"
+        alt="Dashboard Banner"
+        class="banner"
+      />
+    </div>
+
+    <!-- Create Category Section -->
+    <div
+      *ngIf="showCreateCategory && currentView === 'categories'"
+      class="card shadow-sm border-0 mb-4 animate-fade"
+    >
+      <div class="card-body">
+        <h3 class="text-primary mb-3"> Create New Category</h3>
+        <div class="row g-3 align-items-end">
+          <div class="col-md-8">
+            <label class="form-label fw-semibold">Category Name</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="newCategory"
+              placeholder="Enter category name"
+            />
+          </div>
+          <div class="col-md-4 text-md-end">
+            <button class="btn btn-success me-2" (click)="saveCategory()">
+               Save
+            </button>
+            <button
+              class="btn btn-outline-secondary"
+              (click)="toggleCreateCategory()"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manage Categories -->
+    <div
+      *ngIf="currentView === 'categories'"
+      class="card shadow-sm border-0 animate-fade"
+    >
+      <div class="card-body">
+        <h3 class="text-primary mb-3"> Manage Categories</h3>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead class="table-dark">
+              <tr>
+                <th>ID</th>
+                <th>Category Name</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let category of categories">
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                <td>
+                  <button
+                    class="btn btn-sm btn-primary me-2"
+                    (click)="editCategory(category)"
+                  >
+                    ✏️ Edit
+                  </button>
+                  <button
+                    class="btn btn-sm btn-danger"
+                    (click)="deleteCategory(category)"
+                  >
+                    🗑️ Delete
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- User Management -->
+    <div
+      *ngIf="currentView === 'users'"
+      class="card shadow-sm border-0 mt-4 animate-fade"
+    >
+      <div class="card-body">
+        <h3 class="text-primary mb-3">Manage Users</h3>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle">
+            <thead class="table-dark">
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Average Rating</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let profile of profiles">
+                <td>{{ profile.id }}</td>
+                <td>{{ profile.name }}</td>
+                <td>{{ profile.averageRating }}</td>
+                <td>
+                  <!-- <button
+                    class="btn btn-sm btn-danger me-2"
+                    (click)="deleteProfile(profile)"
+                  >
+                     Delete
+                  </button> -->
+                  <button
+                    class="btn btn-sm"
+                    [ngClass]="
+                      profile.isBlocked ? 'btn-success' : 'btn-warning'
+                    "
+                    (click)="toggleBlock(profile)"
+                  >
+                    {{ profile.isBlocked ? 'Unblock' : 'Block' }}
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Category Modal -->
+    <div *ngIf="showEditModal" class="modal fade show d-block animate-fade">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title">✏️ Edit Category</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              (click)="closeEditModal()"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <label class="form-label fw-semibold">Category Name</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="editCategoryName"
+              placeholder="Enter category name"
+            />
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-success" (click)="updateCategory()">
+              Save Changes
+            </button>
+            <button
+              class="btn btn-outline-secondary"
+              (click)="closeEditModal()"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
