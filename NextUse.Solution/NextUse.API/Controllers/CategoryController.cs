@@ -35,7 +35,7 @@ namespace NextUse.API.Controllers
         }
 
         [HttpPost]
-        [Route("{categoryId}")]
+        
         public async Task<IActionResult> Add([FromBody] CategoryRequest newCategory)
         {
             try

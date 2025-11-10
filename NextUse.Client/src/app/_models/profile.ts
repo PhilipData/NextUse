@@ -21,4 +21,5 @@ export interface Profile {
     comments?: UserComment[] | null;
     messages?: Message[] | null;
     products?: Product[] | null;
+     isBlocked: boolean;
 }
