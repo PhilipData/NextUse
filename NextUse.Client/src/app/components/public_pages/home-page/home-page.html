@@ -11,7 +11,7 @@
   
          <!-- 4x featured list, to make sure it always has data and can loop -->
         @for (i of timesToDuplicate; track $index) {
-        <div class="product-card" *ngFor="let product of featuredProducts" [routerLink]="['/product', product.id]">
+        <div class="product-card" *ngFor="let product of featuredProducts" [routerLink]="['/products', product.id]">
           <div class="product-image">
             <img [src]="product.images[0].blobUrl" alt="{{ product.title }}">
           </div>
