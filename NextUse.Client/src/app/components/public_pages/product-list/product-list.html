@@ -45,7 +45,7 @@
 
     <div class="row g-4">
         <div class="col-lg-3 col-md-4 col-sm-6 col-12" *ngFor="let product of filteredProducts">
-            <div class="product-card border border-dark" [routerLink]="['/product', product.id]">
+            <div class="product-card border border-dark" [routerLink]="['/products', product.id]">
                 <div class="product-image">
                     <img *ngIf="product.images[0]" [src]="product.images[0].blobUrl" class="img-fluid" [alt]="product.title">
                     <div class="product-price">{{product.price}} kr.</div>
