@@ -21,6 +21,8 @@ namespace NextUse.DAL.Extensions
         public DbSet<Product> Products { get; set; }
         public DbSet<Bookmark> Bookmarks { get; set; }
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -120,6 +122,36 @@ namespace NextUse.DAL.Extensions
                 .WithMany()
                 .HasForeignKey(m => m.ToProfileId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+
+            builder.Entity<Cart>()
+                .ToTable("Carts")
+                .HasOne(c => c.Profile)
+                .WithMany(p => p.Carts)
+                .HasForeignKey(c => c.ProfileId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<Cart>()
+                .HasMany(c => c.Items)
+                .WithOne(i => i.Cart)
+                .HasForeignKey(i => i.CartId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<CartItem>()
+                .HasOne(i => i.Product)
+                .WithMany()
+                .HasForeignKey(i => i.ProductId)
+                .OnDelete(DeleteBehavior.NoAction);
+            
+            builder.Entity<Cart>()
+                .HasIndex(c => new { c.ProfileId, c.Status })
+                .IsUnique()
+                .HasFilter("[ProfileId] IS NOT NULL AND [Status] = 'Active'");
+            
+            builder.Entity<Cart>()
+                .HasIndex(c => new { c.AnonymousId, c.Status })
+                .IsUnique()
+                .HasFilter("[AnonymousId] IS NOT NULL AND [Status] = 'Active'");
 
 
 

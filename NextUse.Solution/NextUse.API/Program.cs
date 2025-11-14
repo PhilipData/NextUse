@@ -9,6 +9,8 @@ using NextUse.API.Extensions;
 using NextUse.DAL.Extensions;
 using NextUse.DAL.Repository;
 using NextUse.DAL.Repository.Interface;
+using NextUse.Service.Services;
+using NextUse.Service.Services.Interface;
 using NextUse.Services.Services;
 using NextUse.Services.Services.Interface;
 
@@ -61,9 +63,18 @@ namespace NextUse.API
 
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<IProductService, ProductService>();
+            
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            
             builder.Services.AddScoped<IMessageRepository, MessageRepository>();
             builder.Services.AddScoped<IMessageService, MessageService>();
+
+            builder.Services.AddScoped<ICartRepository, CartRepository>();
+            builder.Services.AddScoped<ICartService, CartService>();
+
+            builder.Services.AddScoped<ICartItemRepository, CartItemRepository>();
+
+
             builder.Services.AddAuthorization(options =>
             {
                 // Sætter roller og "levels" af adgang op

@@ -26,6 +26,7 @@ namespace NextUse.DAL.Database.Entities
         public List<Comment> Comments { get; set; } = new();
         public List<Message> Messages { get; set; } = new();
         public List<Product> Products { get; set; } = new();
+        public ICollection<Cart> Carts { get; set; } = new List<Cart>();
         public bool IsBlocked { get; set; } = false;
     }
 }
