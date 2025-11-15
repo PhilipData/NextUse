@@ -1,6 +1,7 @@
 <div *ngIf="profile" class="container my-4">
     <div class="card p-4 shadow-lg">
         <div class="row">
+            <!-- Profile Image Section -->
             <div class="col-md-3 text-center">
                 <div class="profile-img border p-3">
                     <img src="https://via.placeholder.com/150" class="img-fluid rounded" alt="Profile Picture">
@@ -33,6 +34,7 @@
             </div>
         </div>
 
+        <!-- Own Products Section -->
         <div class="mt-4">
             <h5 class="fw-bold">All Products</h5>
             <div class="border p-3 bg-light">
@@ -55,6 +57,7 @@
             </div>
         </div>
 
+        <!-- Bookmarks Section -->
         <!-- <div *ngIf="isOwner && profile.bookmarks?.length" class="mt-4">
             <h5 class="fw-bold">All Bookmarks</h5>
             <div class="bg-dark text-white p-2 rounded">

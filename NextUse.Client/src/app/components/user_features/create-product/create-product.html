@@ -1,1 +1,101 @@
-<p>create-product works!</p>
+<div class="container my-4">
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            <h4>Create Product</h4>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="text" id="title" class="form-control" formControlName="title" placeholder="Enter product title">
+                    <small class="text-danger" *ngIf="productForm.get('title')?.touched">
+                        <span *ngIf="productForm.get('title')?.hasError('required')">Title is required.</span>
+                        <span *ngIf="productForm.get('title')?.hasError('maxlength')">Title cannot be longer than 30 characters.</span>
+                        <span *ngIf="productForm.get('title')?.hasError('pattern')">Title can only contain letters.</span>
+                    </small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea id="description" class="form-control" formControlName="description" rows="3" placeholder="Enter product description"></textarea>
+                    <small class="text-danger" *ngIf="productForm.get('description')?.touched">
+                        <span *ngIf="productForm.get('description')?.hasError('required')">Description is required.</span>
+                    </small>
+                </div>
+
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price (DKK)</label>
+                    <input type="number" id="price" class="form-control" formControlName="price" placeholder="Enter price">
+                    <small class="text-danger" *ngIf="productForm.get('price')?.touched">
+                        <span *ngIf="productForm.get('price')?.hasError('required')">Price is required.</span>
+                        <span *ngIf="productForm.get('price')?.hasError('min')">Price must be a valid number and at least 0.</span>
+                        <span *ngIf="productForm.get('price')?.hasError('max')">Price can't exceed 1,000,000 DKK.</span>
+                    </small>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="country" class="form-label">Country</label>
+                        <input type="text" id="country" class="form-control" formControlName="country" placeholder="Enter country">
+                        <small class="text-danger" *ngIf="productForm.get('country')?.touched">
+                            <span *ngIf="productForm.get('country')?.hasError('required')">Country is required.</span>
+                            <span *ngIf="productForm.get('country')?.hasError('pattern')">Country can only contain letters.</span>
+                        </small>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="city" class="form-label">City</label>
+                        <input type="text" id="city" class="form-control" formControlName="city" placeholder="Enter city">
+                        <small class="text-danger" *ngIf="productForm.get('city')?.touched">
+                            <span *ngIf="productForm.get('city')?.hasError('required')">City is required.</span>
+                            <span *ngIf="productForm.get('city')?.hasError('pattern')">City can only contain letters.</span>
+                        </small>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="postalCode" class="form-label">Postal Code</label>
+                        <input type="number" id="postalCode" class="form-control" formControlName="postalCode" placeholder="Enter postal code">
+                        <small class="text-danger" *ngIf="productForm.get('postalCode')?.touched">
+                            <span *ngIf="productForm.get('postalCode')?.hasError('required')">Postal code is required.</span>
+                            <span *ngIf="productForm.get('postalCode')?.hasError('pattern')">Postal code must be 4 to 6 digits.</span>
+                        </small>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="category" class="form-label">Category</label>
+                    <select id="category" class="form-select" formControlName="category">
+                        <option [ngValue]="null" selected disabled hidden>Select a category</option>
+                        <option *ngFor="let category of categories" [ngValue]="category" [hidden]="category === productForm.get('category')?.value">
+                            {{ category.name }}
+                        </option>
+                    </select>
+                    <small class="text-danger" *ngIf="productForm.get('category')?.touched">
+                        <span *ngIf="productForm.get('category')?.hasError('required')">Please select a category.</span>
+                    </small>
+                </div>
+
+          <div class="mb-3">
+            <label class="form-label">Upload Images</label>
+            <input type="file" class="form-control" (change)="onImageSelected($event)" multiple accept="image/*">
+            <small class="text-danger" *ngIf="imageError">{{ imageError }}</small>
+            <small class="text-info" *ngIf="imagePreviews.length >= 8 && !imageError">You can only upload a maximum of 8 images.</small>
+          </div>
+          
+          <div class="mb-3 d-flex flex-wrap">
+            <div *ngFor="let img of imagePreviews; let i = index" class="me-2 mb-2 position-relative">
+                <div class="img-fluid-container">
+                    <img [src]="img" class="img-fluid my-auto">
+                    <button type="button" class="btn btn-img btn-danger position-absolute top-0 end-0" (click)="removeImage(i)">
+                        X
+                    </button>
+                </div>
+            </div>
+          </div>
+
+                <button type="submit" class="btn btn-dark" [disabled]="productForm.invalid">Create Product</button>
+            </form>
+        </div>
+    </div>
+</div>

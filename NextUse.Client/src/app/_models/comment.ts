@@ -1,7 +1,7 @@
 import { Profile } from "./profile";
 import { Product } from "./product";
 
-export interface UserComment { // Comment er åbenbart et eksisterende interface i typescript, så vi ændrer lige navnet her
+export interface UserComment {
     id: number;
     content: string;
     createdAt: string;

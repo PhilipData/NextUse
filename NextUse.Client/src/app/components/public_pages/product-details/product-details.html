@@ -1,1 +1,131 @@
-<p>product-details works!</p>
+<div class="container my-5">
+  <div class="row d-flex flex-column-reverse flex-md-row">
+    <!-- Image Showcase Section -->
+    <div class="col-md-8 col-12">
+      <div class="row mt-2">
+        <div class="col">
+          <div class="row">
+            <!-- Showcase Image -->
+            <div class="col-md-12 mb-3">
+              <div class="card">
+                <img class="card-img-top" [src]="selectedImage" alt="Showcase Image">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image Thumbnails -->
+      <div class="row">
+        <div class="col-auto" *ngFor="let image of product?.images">
+          <img class="img-thumbnail" [src]="image.blobUrl" alt="Product Image"
+            (click)="setSelectedImage(image.blobUrl)">
+        </div>
+      </div>
+
+      <div class="splitter my-4"></div>
+
+      <!-- Product Description -->
+      <div class="col p-0">
+        <h4>Description</h4>
+        <p>{{ product?.description }}</p>
+      </div>
+
+      <div class="splitter my-4"></div>
+
+      <!-- Comment Section -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <h4>Comments</h4>
+
+          <!-- Display Existing Comments -->
+          <div class="my-3">
+            <div *ngFor="let comment of product?.comments" class="comments card mb-2">
+              <div class="d-flex justify-content-between">
+                <h5><strong>{{ comment.profile?.name }}</strong></h5> <!-- TODO: Link til profile-detail -->
+                <small>{{ comment.createdAt }}</small>
+              </div>
+              <div class="splitter"></div>
+              <p class="mt-2">{{ comment.content }}</p>
+            </div>
+          </div>
+
+          <!-- Add a Comment -->
+          <div class="mt-4" *ngIf="profile">
+            <h5>Leave a Comment</h5>
+            <form (ngSubmit)="submitComment()">
+              <div class="mb-2">
+                <textarea class="form-control" rows="3" [(ngModel)]="commentInput" name="comment"
+                  placeholder="Write your comment here..."></textarea>
+
+                <div class="comment-error">
+                  <small class="text-danger" *ngIf="commentError">{{ commentError }}</small>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-dark">Submit</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Details Section -->
+    <div class="col-md-4 col-12">
+      <!-- Product Title -->
+      <div class="row mb-3">
+        <div class="col">
+          <h1>{{ product?.title }}</h1>
+        </div>
+      </div>
+
+      <!-- Bookmark Button -->
+      <div class="row mb-3" *ngIf="profile">
+        <div class="col">
+
+          <button class="btn btn-dark btn-bookmark" (click)="toggleBookmark()">
+            <i class="bi-bookmark fa-solid fa-bookmark" [ngClass]="isBookmarked ? 'bi-bookmark-fill' : 'bi-bookmark'"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Product Info Section -->
+      <div class="row">
+        <ul class="list-unstyled">
+          <li class="display-6 font-weight-bold mb-3">{{ product?.price }} kr.</li>
+          <li>
+            <div class="category bg-dark my-2">
+              {{ product?.category?.name }}
+            </div>
+          </li>
+          <li><strong>Country:</strong> {{ product?.address?.country }}</li>
+          <li><strong>City:</strong> {{ product?.address?.city }}</li>
+        </ul>
+      </div>
+
+      <div class="splitter my-4"></div>
+
+      <!-- User Profile Section -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <h4><strong>Seller</strong></h4>
+          <div class=" profile-card card p-3" [routerLink]="['/profile', product?.profile?.id]">
+            <h5>{{ product?.profile?.name }}</h5> <!-- TODO: Link to profile-detail -->
+
+            <div class="star-rating">
+              <div class="stars-fill" [style.width]="starWidth"></div>
+            </div>
+
+            <div class="fs-6 text-muted">based on {{ product?.profile?.ratingAmount }} rating(s)</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button class="btn btn-danger" *ngIf="isOwner" (click)="deleteProduct(product?.id)">Delete product</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

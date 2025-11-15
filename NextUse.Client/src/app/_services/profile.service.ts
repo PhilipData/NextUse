@@ -27,15 +27,23 @@ export class ProfileService {
   findById(profileId: number): Observable<Profile> {
     return this.http.get<Profile>(this.apiUrl + '/' + profileId);
   }
+  
   delete(profileId: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${profileId}`);
   }
 
+  blockProfile(profileId: number): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/${profileId}/block`, {}, { responseType: 'text' });
+  }
 
+  unblockProfile(profileId: number): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/${profileId}/unblock`, {}, { responseType: 'text' });
+  }
   
 
-  // ✅ Fetch the currently logged-in user (NEW METHOD)
+
+  // Fetch the currently logged-in user
   getLoggedInUser(): Observable<Profile> {
-    return this.http.get<Profile>(`${this.apiUrl}/me`); // Adjust API endpoint if needed
+    return this.http.get<Profile>(`${this.apiUrl}/me`);
   }
 }

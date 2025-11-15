@@ -1,6 +1,8 @@
 //import { User } from "./user";
-//TODO Hvad gør vi med user? vi skal have en, vi ved ikke helt hvor meget af useren vi skal bruge? Identity user
+// TODO how do we handle user? we need a user but unsure of how much of the user we need... Identity user 
 //Authentication - Email, Password etc ?
+
+
 import { Address } from "./address";
 import { Rating } from "./rating";
 import { Bookmark } from "./bookmark";
@@ -21,4 +23,5 @@ export interface Profile {
     comments?: UserComment[] | null;
     messages?: Message[] | null;
     products?: Product[] | null;
+     isBlocked: boolean;
 }
