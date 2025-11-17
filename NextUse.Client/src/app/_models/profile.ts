@@ -9,6 +9,7 @@ import { Bookmark } from "./bookmark";
 import { UserComment } from "./comment";
 import { Message } from "./message";
 import { Product } from "./product";
+import { Cart } from "./cart";
 
 export interface Profile {
     id: number;
@@ -23,5 +24,7 @@ export interface Profile {
     comments?: UserComment[] | null;
     messages?: Message[] | null;
     products?: Product[] | null;
+     carts: Cart[];
      isBlocked: boolean;
+
 }
