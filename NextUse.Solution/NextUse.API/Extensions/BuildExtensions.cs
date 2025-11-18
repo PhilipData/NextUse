@@ -11,52 +11,54 @@ namespace NextUse.API.Extensions
         {
             using var scope = app.Services.CreateScope();
 
-            var userManager = scope.ServiceProvider.GetRequiredService <UserManager<User>>();
+            var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
             var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDBContext>();
 
             if (!dbContext.Addresses.Any())
             {
                 dbContext.Addresses.AddRange(
-                    new Address
-                    {
-                        Country = "AdminCountry",
-                        City = "AdminCity",
-                        PostalCode = 1000,
-                        Street = "AdminStreet",
-                        HouseNumber = "1000"
-                    },
-                    new Address
-                    {
-                        Country = "ProfileCountry1",
-                        City = "ProfileCity1",
-                        PostalCode = 0001,
-                        Street = "ProfileStreet1",
-                        HouseNumber = "1A"
-                    },
-                    new Address
-                    {
-                        Country = "ProfileCountry2",
-                        City = "ProfileCity2",
-                        PostalCode = 0002,
-                        Street = "ProfileStreet2",
-                        HouseNumber = "2A"
-                    },
-                    new Address
-                    {
-                        Country = "ProductCountry1",
-                        City = "ProductCity1",
-                        PostalCode = 0001,
-                        Street = "ProductStreet1",
-                        HouseNumber = "1A"
-                    },
-                    new Address
-                    {
-                        Country = "ProductCountry2",
-                        City = "ProductCity2",
-                        PostalCode = 0002,
-                        Street = "ProductStreet2",
-                        HouseNumber = "2A"
-                    });
+                   new Address
+                   {
+                       Country = "Danmark",
+                       City = "København",
+                       PostalCode = 2000,
+                       Street = "Smallegade",
+                       HouseNumber = "2B"
+                   },
+                   new Address
+                   {
+                       Country = "Danmark",
+                       City = "Aarhus",
+                       PostalCode = 8000,
+                       Street = "Frederiks Allé",
+                       HouseNumber = "15"
+                   },
+                   new Address
+                   {
+                       Country = "Danmark",
+                       City = "Odense",
+                       PostalCode = 5000,
+                       Street = "Vesterbro",
+                       HouseNumber = "33"
+                   },
+                   new Address
+                   {
+                       Country = "Danmark",
+                       City = "Aalborg",
+                       PostalCode = 9000,
+                       Street = "Hasserisvej",
+                       HouseNumber = "10A"
+                   },
+                   new Address
+                   {
+                       Country = "Danmark",
+                       City = "Roskilde",
+                       PostalCode = 4000,
+                       Street = "Algade",
+                       HouseNumber = "7"
+                   }
+                );
+
 
                 dbContext.SaveChanges();
             }
@@ -80,18 +82,18 @@ namespace NextUse.API.Extensions
                 dbContext.SaveChanges();
             }
 
-            User? user1 = userManager.FindByEmailAsync("user1@nextuse.com").GetAwaiter().GetResult();
+            User? user1 = userManager.FindByEmailAsync("meharzain243@yahoo.com").GetAwaiter().GetResult();
             if (user1 is null)
             {
-                user1 = new User { UserName = "user1@nextuse.com", Email = "user1@nextuse.com" };
+                user1 = new User { UserName = "meharzain243@yahoo.com", Email = "meharzain243@yahoo.com" };
                 userManager.CreateAsync(user1, "User123!").GetAwaiter().GetResult();
                 userManager.AddClaimAsync(user1, new Claim("level", "user")).GetAwaiter().GetResult();
 
-                user1 = userManager.FindByEmailAsync("user1@nextuse.com").GetAwaiter().GetResult();
+                user1 = userManager.FindByEmailAsync("meharzain243@yahoo.com").GetAwaiter().GetResult();
 
                 dbContext.Profiles.Add(new Profile
                 {
-                    Name = "Profile1",
+                    Name = "Zain",
                     UserId = user1!.Id,
                     AddressId = 2
                 });
@@ -99,18 +101,18 @@ namespace NextUse.API.Extensions
                 dbContext.SaveChanges();
             }
 
-            User? user2 = userManager.FindByEmailAsync("user2@nextuse.com").GetAwaiter().GetResult();
+            User? user2 = userManager.FindByEmailAsync("silentbird@nextuse.com").GetAwaiter().GetResult();
             if (user2 is null)
             {
-                user2 = new User { UserName = "user2@nextuse.com", Email = "user2@nextuse.com" };
+                user2 = new User { UserName = "silentbird@nextuse.com", Email = "silentbird@nextuse.com" };
                 userManager.CreateAsync(user2, "User123!").GetAwaiter().GetResult();
                 userManager.AddClaimAsync(user2, new Claim("level", "user")).GetAwaiter().GetResult();
 
-                user1 = userManager.FindByEmailAsync("user2@nextuse.com").GetAwaiter().GetResult();
+                user1 = userManager.FindByEmailAsync("silentbird@nextuse.com").GetAwaiter().GetResult();
 
                 dbContext.Profiles.Add(new Profile
                 {
-                    Name = "Profile2",
+                    Name = "Philip",
                     UserId = user2!.Id,
                     AddressId = 3
                 });
@@ -123,12 +125,21 @@ namespace NextUse.API.Extensions
                 dbContext.Categories.AddRange(
                     new Category
                     {
-                        Name = "Category1"
+                        Name = "Køkken"
                     },
                     new Category
                     {
-                        Name = "Category2"
-                    });
+                        Name = "Tøj"
+                    },
+                    new Category
+                    {
+                        Name = "Elektronik"
+                    },
+                    new Category
+                    {
+                        Name = "Møbler"
+                    }
+                    );
 
                 dbContext.SaveChanges();
             }
@@ -138,20 +149,20 @@ namespace NextUse.API.Extensions
                 dbContext.Products.AddRange(
                     new Product
                     {
-                        Title = "ProductTitle1",
-                        Description = "ProductDescription1",
+                        Title = "Stol",
+                        Description = "Armchair",
                         Price = 100.00m,
                         ProfileId = 2,
-                        CategoryId = 1,
+                        CategoryId = 4,
                         AddressId = 4,
                     },
                     new Product
                     {
-                        Title = "ProductTitle2",
-                        Description = "ProductDescription2",
+                        Title = "Bestik",
+                        Description = "Mixed cutlery",
                         Price = 200.00m,
                         ProfileId = 3,
-                        CategoryId = 2,
+                        CategoryId = 1,
                         AddressId = 5,
                     });
 
@@ -199,13 +210,13 @@ namespace NextUse.API.Extensions
                 dbContext.Comments.AddRange(
                     new Comment
                     {
-                        Content = "Comment For Product 1 From Profile 2",
+                        Content = "Er det ægte læder?",
                         ProductId = 1,
                         ProfileId = 3,
                     },
                     new Comment
                     {
-                        Content = "Comment For Product 2 From Profile 1",
+                        Content = "Dit produkt stinker og du burde ikke sælge sådan noget gammel lort!",
                         ProductId = 2,
                         ProfileId = 2,
                     });
@@ -218,13 +229,13 @@ namespace NextUse.API.Extensions
                 dbContext.Messages.AddRange(
                     new Message
                     {
-                        Content = "Message From Profile 1 To Profile 2",
+                        Content = "Sorry for the rude Comment",
                         FromProfileId = 2,
                         ToProfileId = 3,
                     },
                     new Message
                     {
-                        Content = "Message From Profile 2 To Profile 1",
+                        Content = "F*cuk Dig",
                         FromProfileId = 3,
                         ToProfileId = 2,
                     });
