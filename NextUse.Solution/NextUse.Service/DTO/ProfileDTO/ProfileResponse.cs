@@ -25,7 +25,8 @@ namespace NextUse.Services.DTO.ProfileDTO
         public required string City { get; set; }
         public int PostalCode { get; set; }
         public string? Street { get; set; }
-        public string? Housenumber { get; set; }
+        public string? HouseNumber { get; set; }
+
 
 
     }

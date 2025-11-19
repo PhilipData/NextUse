@@ -57,11 +57,28 @@ export class ProductDetails {
   }
 
   addToCart(productId: number) {
-    this.cartService.addItem(productId).subscribe ({ 
-      next: () => { this.toastr.success('Product added to cart!');},
-      error: err => console.error(err)
-    });
+  if (!this.authService.isAuthenticated()) {
+    // Show message
+    this.toastr.info('Please log in to add items to your cart.');
+
+    // Redirect to login page
+    this.router.navigate(['/login']);
+    return;
   }
+  // Normal add to cart logic here
+  this.cartService.addItem(productId).subscribe(() => {
+    this.toastr.success("Produkt tilføjet til kurven!");
+    this.router.navigate(['/cart']);
+  });
+}
+
+
+  // addToCart(productId: number) {
+  //   this.cartService.addItem(productId).subscribe ({ 
+  //     next: () => { this.toastr.success('Product added to cart!');},
+  //     error: err => console.error(err)
+  //   });
+  // }
 
 
   setSelectedImage(imageUrl: string) {

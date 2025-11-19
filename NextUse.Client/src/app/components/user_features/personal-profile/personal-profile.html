@@ -19,15 +19,17 @@
 
             <div class="col-md-9">
                 <h4>{{ profile.name }}</h4>
-                 <p>Email: {{ profile.messages}}</p>
+                 <!-- <p>Email: {{ profile.messages }}</p> -->
 
                 <hr>
 
                 <div *ngIf="profile.address" class="border p-3 mt-3">
                     <h5 class="fw-bold">Address</h5>
                     <p><strong>Country:</strong> {{ profile.address.country }}</p>
-                    <p><strong>City:</strong> {{ profile.address.city }}</p>
+                    <!-- <p><strong>City:</strong> {{ profile.address.city }}</p> -->
+                         <p *ngIf="isOwner"><strong>City:</strong> {{ profile.address.city }}</p>
                     <p *ngIf="isOwner"><strong>Street:</strong> {{ profile.address.street }}</p>
+                     <!-- <p *ngIf="isOwner"><strong>Street:</strong> {{ profile.address.postalCode }}</p> -->
                     <p *ngIf="isOwner"><strong>House Number:</strong> {{ profile.address.houseNumber }}</p>
                     <p *ngIf="isOwner"><strong>Postal Code:</strong> {{ profile.address.postalCode }}</p>
                 </div>
@@ -52,7 +54,7 @@
                         <span>{{product.price}} kr.</span>
                     </div>
                     <button class="btn btn-sm btn-primary me-2" *ngIf="isOwner">Edit</button>
-                    <button class="btn btn-sm btn-danger" *ngIf="isOwner" (click)="deleteProduct(product.id)">🗑</button>
+                    <button class="btn btn-sm btn-danger ms-3" *ngIf="isOwner" (click)="deleteProduct(product.id)">🗑</button>
                 </div>
             </div>
         </div>

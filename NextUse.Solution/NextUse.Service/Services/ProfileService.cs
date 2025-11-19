@@ -38,7 +38,7 @@ namespace NextUse.Services.Services
                     City = profile.Address.City,
                     PostalCode = profile.Address.PostalCode,
                     Street = profile.Address.Street,
-                    Housenumber = profile.Address.HouseNumber
+                    HouseNumber = profile.Address.HouseNumber
                 },
                 Products = profile.Products == null
                     ? []

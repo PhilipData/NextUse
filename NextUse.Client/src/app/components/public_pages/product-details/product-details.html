@@ -102,15 +102,21 @@
           <li><strong>Country:</strong> {{ product?.address?.country }}</li>
           <li><strong>City:</strong> {{ product?.address?.city }}</li>
         </ul>
-         <button class="btn btn-dark mt-3 w-100"
-           (click)="addToCart(product?.id!)">
-    Læg i kurv
-  </button>
-      </div>
+     <button class="btn btn-dark mt-3 w-100"
+        *ngIf="!isOwner"
+        (click)="addToCart(product?.id!)">
+  Læg i kurv
+</button>
+
+<!-- Optional info message -->
+<div *ngIf="isOwner" class="text-muted mt-2">
+  Du kan ikke tilføje dit eget produkt til kurven.
+  </div>
+
+    </div>
   
 
-      <div class="splitter my-4"></div>
-
+     <div class="splitter my-4"></div>
       <!-- User Profile Section -->
       <div class="row mb-4">
         <div class="col-12">

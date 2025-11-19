@@ -31,18 +31,20 @@
         <li class="nav-item" *ngIf="!isAuthenticated()">
           <a  class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
         </li>
-<a routerLink="/cart" class="relative">
-  Kurv
+        <li class="nav-item">
+  <a class="nav-link position-relative" routerLink="/cart" routerLinkActive="active">
+    Kurv
 
-  <ng-container *ngIf="(cartService.cart$ | async)?.items?.length as count">
-    <span *ngIf="count > 0"
-          class="ml-1 inline-block text-xs px-2 py-0.5 rounded-full bg-black text-white">
-      {{ count }}
-    </span>
-  </ng-container>
-</a>
-
-
+    <!-- Badge -->
+    <ng-container *ngIf="(cartService.cart$ | async)?.items?.length as count">
+      <span *ngIf="count > 0"
+            class="badge badge-pill badge-light position-absolute"
+            style="top: 0; right: -10px; font-size: 0.7rem;">
+        {{ count }}
+      </span>
+    </ng-container>
+  </a>
+</li>
            
         <li class="nav-item" *ngIf="!isAuthenticated()">
           <a  class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
