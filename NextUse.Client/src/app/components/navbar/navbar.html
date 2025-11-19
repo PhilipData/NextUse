@@ -31,6 +31,19 @@
         <li class="nav-item" *ngIf="!isAuthenticated()">
           <a  class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
         </li>
+<a routerLink="/cart" class="relative">
+  Kurv
+
+  <ng-container *ngIf="(cartService.cart$ | async)?.items?.length as count">
+    <span *ngIf="count > 0"
+          class="ml-1 inline-block text-xs px-2 py-0.5 rounded-full bg-black text-white">
+      {{ count }}
+    </span>
+  </ng-container>
+</a>
+
+
+           
         <li class="nav-item" *ngIf="!isAuthenticated()">
           <a  class="nav-link" routerLink="/register" routerLinkActive="active">Register</a>
         </li>

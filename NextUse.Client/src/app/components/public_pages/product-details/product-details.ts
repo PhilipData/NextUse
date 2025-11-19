@@ -12,6 +12,7 @@ import { AuthService } from '../../../_services/auth.service';
 import { BookmarkService } from '../../../_services/bookmark.service';
 import { CommentService } from '../../../_services/comment.service';
 import { ProductService } from '../../../_services/product.service';
+import { CartService } from '../../../_services/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -37,6 +38,7 @@ export class ProductDetails {
     private commentService: CommentService,
     private authService: AuthService,
     private router: Router,
+    private cartService: CartService,
     private toastr:ToastrService,
     private activatedRoute: ActivatedRoute
   ) {}
@@ -51,6 +53,13 @@ export class ProductDetails {
       next: (profile) => {
         this.profile = profile;
       }
+    });
+  }
+
+  addToCart(productId: number) {
+    this.cartService.addItem(productId).subscribe ({ 
+      next: () => { this.toastr.success('Product added to cart!');},
+      error: err => console.error(err)
     });
   }
 

@@ -10,6 +10,7 @@ import { Admindashboard } from './components/Admin_Features/admindashboard/admin
 import { Role } from './_utils/role.enum';
 import { ProductDetails } from './components/public_pages/product-details/product-details';
 import { ChatWidget } from './components/public_pages/chat-widget/chat-widget';
+import { CartComponenet } from './components/public_pages/cart-componenet/cart-componenet';
 
 
 export const routes: Routes = [
@@ -19,6 +20,7 @@ export const routes: Routes = [
     { path: 'register', component: Register, canActivate: [noAuthGuard] },
     { path: 'products', component: ProductList },
     { path: 'home', component: HomePage },
+    { path: 'cart', component: CartComponenet, canActivate: [authGuard]},
     { path: 'products/:productId', component: ProductDetails },
      { path:'admindashboard', component: Admindashboard, canActivate: [authGuard], data: { roles: [Role.Admin] }},
        {path: 'messages', component: ChatWidget, canActivate: [authGuard]},

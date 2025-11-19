@@ -1,22 +1,16 @@
-import { Product } from "./product";
-import { Profile } from "./profile";
-
-export interface Cart {
+export interface CartItemResponse {
   id: number;
-  profileId: number;
-  profile: Profile;
-  anonymousId?: string | null;
-  status: string;
-  createdAt: string;   
-  updatedAt: string; 
-  items: CartItem[];
+  productId: number;
+  title: string;
+  unitPrice: number;
+  quantity: number;
 }
 
-export interface CartItem {
+export interface CartResponse {
   id: number;
-  cartId: number;
-  productId: number;
-  product: Product;
-  quantity: number;
-  unitPrice: number;
+  status: string;      
+  createdAt: string;   
+  updatedAt: string;   
+  total: number;
+  items: CartItemResponse[];
 }
