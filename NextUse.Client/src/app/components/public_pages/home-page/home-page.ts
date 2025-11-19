@@ -31,8 +31,7 @@ export class HomePage implements OnInit {
   loadFeaturedProducts(): void {
     this.productService.getAll().subscribe(
       (products: Product[]) => {
-        //Filter out only the featured products if there is an `isFeatured` flag
-        //this.featuredProducts = products.filter(product => product.profile);
+
         this.featuredProducts = products;
       },
       (error) => {
