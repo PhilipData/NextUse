@@ -27,16 +27,16 @@ namespace NextUse.API
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowAngularApp",
-                    builder => builder.WithOrigins("http://localhost:4200") // Allow Angular frontend
-                                      .AllowAnyMethod() // Allow all HTTP methods (GET, POST, PUT, DELETE, etc.)
-                                      .AllowAnyHeader() // Allow all headers
-                                      .AllowCredentials()); // Allow credentials if needed
+                    builder => builder.WithOrigins("http://localhost:4200")
+                                      .AllowAnyMethod() 
+                                      .AllowAnyHeader() 
+                                      .AllowCredentials());
             });
 
-            // Add services to the container.
+            
 
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -77,7 +77,6 @@ namespace NextUse.API
 
             builder.Services.AddAuthorization(options =>
             {
-                // Sætter roller og "levels" af adgang op
                 options.AddPolicy("user", pb => pb
                     .RequireClaim("level", "user", "support", "admin"));
 
@@ -98,7 +97,7 @@ namespace NextUse.API
 
             builder.Services.ConfigureApplicationCookie(options =>
             {
-                options.Cookie.SameSite = SameSiteMode.None; // Allow cross-origin cookies
+                options.Cookie.SameSite = SameSiteMode.None; 
                 options.Cookie.HttpOnly = true;
             });
 
@@ -108,7 +107,6 @@ namespace NextUse.API
             app.UseCors("AllowAngularApp");
 
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();

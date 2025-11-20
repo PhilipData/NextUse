@@ -13,7 +13,7 @@ export class CartService {
   private cartSubject = new BehaviorSubject<CartResponse | null>(null);
   cart$ = this.cartSubject.asObservable();
 
-  /** Load/refresh the cart (call on app start or when you need it) */
+
 load(): Observable<CartResponse> {
     return this.http.get<CartResponse>(this.baseUrl, { withCredentials: true }).pipe(
         tap(cart => this.cartSubject.next(cart))
@@ -25,7 +25,7 @@ addItem(productId: number, quantity = 1): Observable<CartResponse> {
     return this.http.post<CartResponse>(
         `${this.baseUrl}/items`,
         { productId, quantity },
-        { withCredentials: true } // send cookies/auth
+        { withCredentials: true } 
     ).pipe(
         tap(cart => this.cartSubject.next(cart))
     );
@@ -37,30 +37,12 @@ updateItem(cartItemId: number, quantity: number): Observable<CartResponse> {
   return this.http.put<CartResponse>(
     `${this.baseUrl}/items`,
     { cartItemId, quantity },
-    { withCredentials: true } // <-- ensures cookies/session are sent
+    { withCredentials: true }
   ).pipe(
     tap(cart => this.cartSubject.next(cart))
   );
 }
 
-
-//   removeItem(cartItemId: number): Observable<CartResponse> {
-//     return this.http.delete<CartResponse>(`${this.baseUrl}/items/${cartItemId}`).pipe(
-//       tap(cart => this.cartSubject.next(cart))
-//     );
-//   }
-
-//   clear(): Observable<CartResponse> {
-//     return this.http.delete<CartResponse>(`${this.baseUrl}/clear`).pipe(
-//       tap(cart => this.cartSubject.next(cart))
-//     );
-//   }
-
-//   checkout(): Observable<CartResponse> {
-//     return this.http.post<CartResponse>(`${this.baseUrl}/checkout`, {}).pipe(
-//       tap(cart => this.cartSubject.next(cart))
-//     );
-//   }
 
 removeItem(cartItemId: number): Observable<CartResponse> {
     return this.http.delete<CartResponse>(
@@ -90,7 +72,7 @@ checkout(): Observable<CartResponse> {
     );
 }
 
-  /** Convenient snapshot getter */
+  //Snapshot getter
   get value(): CartResponse | null {
     return this.cartSubject.value;
   }

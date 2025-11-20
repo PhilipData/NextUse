@@ -12,7 +12,7 @@ namespace NextUse.DAL.Database.Entities
         public int? ProfileId { get; set; }
         public Profile? Profile { get; set; }
 
-        public int? ProductId { get; set; }  // Each bookmark is tied to a Product
+        public int? ProductId { get; set; } 
         public Product? Product { get; set; }
       
     }

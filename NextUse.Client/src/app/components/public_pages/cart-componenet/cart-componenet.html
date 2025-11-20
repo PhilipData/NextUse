@@ -4,7 +4,6 @@
   <div *ngIf="loading()" class="text-center py-4">Indlæser...</div>
   <div *ngIf="error()" class="alert alert-danger">{{ error() }}</div>
 
-  <!-- Checkout completed message -->
   <div *ngIf="cart()?.status === 'CheckedOut'" class="alert alert-success text-center py-3">
     Din ordre er gennemført. Tak for din bestilling!
   </div>
@@ -63,7 +62,6 @@
       </div>
     </div>
 
-    <!-- Empty cart message if no items -->
     <div *ngIf="!c.items?.length && c.status !== 'CheckedOut'" class="text-center py-4 text-muted">
       Kurven er tom.
     </div>

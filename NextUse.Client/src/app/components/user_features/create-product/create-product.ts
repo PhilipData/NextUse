@@ -74,7 +74,6 @@ export class CreateProduct {
     if (files.length > 0) {
       this.imageError = null;
 
-      // Add new files to the existing image files
       for (let file of files) {
         if (!file.type.startsWith('image/')) {
           this.imageError = 'Only image files are allowed!';
@@ -85,9 +84,9 @@ export class CreateProduct {
           return;
         }
 
-        this.imageFiles.push(file); // Add the file to the image files array
+        this.imageFiles.push(file);
 
-        // Generate preview URL for the uploaded image
+       
         const reader = new FileReader();
         reader.onload = (e: any) => {
           this.imagePreviews.push(e.target.result);

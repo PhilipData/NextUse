@@ -15,8 +15,8 @@ import { ProductService } from '../../../_services/product.service';
 export class HomePage implements OnInit {
 
   featuredProducts: Product[] = [];
-  categories: any[] = []; // Replace `any` with your actual Category model, if it makes sense
-  timesToDuplicate: number[] = Array(4).fill(0); // workaround
+  categories: any[] = [];
+  timesToDuplicate: number[] = Array(4).fill(0); 
 
   constructor(
     private productService: ProductService,
@@ -25,7 +25,6 @@ export class HomePage implements OnInit {
 
   ngOnInit(): void {
     this.loadFeaturedProducts();
-    //  this.loadCategories();
   }
 
   loadFeaturedProducts(): void {
@@ -41,15 +40,15 @@ export class HomePage implements OnInit {
     
   }
 
-  loadCategories(): void {
-    this.categoryService.getAll().subscribe(
-      (categories: any[]) => {
-        this.categories = categories; // Replace `any` with your actual Category model
-      },
-      (error) => {
-        console.error('Error loading categories:', error);
-      }
-    );
+  // loadCategories(): void {
+  //   this.categoryService.getAll().subscribe(
+  //     (categories: any[]) => {
+  //       this.categories = categories;
+  //     },
+  //     (error) => {
+  //       console.error('Error loading categories:', error);
+  //     }
+  //   );
     
-  }
+  // }
 }

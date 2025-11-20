@@ -58,13 +58,11 @@ export class ProductList {
       ? this.products.filter(product => product.category?.id === this.selectedCategory!.id)
       : [...this.products];
 
-    // Filter by search query
     filteredByCategory = filteredByCategory.filter(product => 
       product.title.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
       (product.description && product.description.toLowerCase().includes(this.searchQuery.toLowerCase()))
     );
 
-    // If we are showing only bookmarked products, filter by bookmarks
     if (this.showOnlyBookmarked) {
       filteredByCategory = filteredByCategory.filter(product => 
         this.bookmarks.some(bookmark => bookmark.product?.id === product.id)
@@ -73,7 +71,6 @@ export class ProductList {
 
     this.filteredProducts = filteredByCategory;
 
-    // Apply sorting after filtering
     this.sortProducts();
   }
 

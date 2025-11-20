@@ -40,7 +40,6 @@ namespace NextUse.Service.Services
             var product = await _products.GetByIdAsync(productId)
                           ?? throw new KeyNotFoundException("Product not found.");
 
-            // Merge with existing line if same product
             var existing = cart.Items.FirstOrDefault(i => i.ProductId == productId);
             if (existing != null)
             {
@@ -59,7 +58,6 @@ namespace NextUse.Service.Services
             };
             await _items.AddAsync(newItem);
 
-            // reload cart
             cart = (await _carts.GetByIdAsync(cart.Id))!;
             cart.UpdatedAt = DateTime.UtcNow;
             await _carts.SaveChangesAsync();
@@ -103,14 +101,14 @@ namespace NextUse.Service.Services
         public async Task<CartResponse> CheckoutAsync(int profileId)
         {
             var cart = await EnsureOpenCart(profileId);
-            // TODO: Create Order, reduce stock, integrate payment (Stripe test) etc.
+            
             cart.Status = "CheckedOut";
             cart.UpdatedAt = DateTime.UtcNow;
             await _carts.SaveChangesAsync();
             return ToResponse(cart);
         }
 
-        // Helpers
+  
         private async Task<Cart> EnsureOpenCart(int profileId)
         {
             var profile = await _profiles.GetByIdAsync(profileId)

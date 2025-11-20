@@ -12,7 +12,7 @@ import { Profile } from '../_models/profile';
 })
 export class AuthService {
   private readonly apiUrl = environment.apiUrl + 'User';
-  private userSubject = new BehaviorSubject<User | null>(null); // Observable stream for user
+  private userSubject = new BehaviorSubject<User | null>(null); 
   private profileSubject = new BehaviorSubject<Profile | null>(null);
 
   constructor(private http: HttpClient) { }
@@ -26,7 +26,7 @@ export class AuthService {
   }
 
   get profile$(): Observable<Profile | null> {
-    return this.profileSubject.asObservable(); // Observable for components to subscribe to
+    return this.profileSubject.asObservable(); 
   }
 
   // Check if the user is authenticated
@@ -34,7 +34,7 @@ export class AuthService {
     return !!this.userSubject.value;
   }
 
-  // Role checks
+ 
   isAdmin(): boolean {
     return this.userSubject.value?.role === Role.Admin;
   }
@@ -43,7 +43,7 @@ export class AuthService {
     return this.userSubject.value?.role === Role.Support;
   }
 
-  // Load user information from the API
+ 
   async loadUser(): Promise<void> {
     try {
       const user = await firstValueFrom(this.http.get<any>(this.apiUrl, {withCredentials: true}));
@@ -55,7 +55,7 @@ export class AuthService {
           email: user['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'],
           role: this.mapLevelToRole(user['level'])
         };
-        this.userSubject.next(mappedUser);  // Update the BehaviorSubject with the new user
+        this.userSubject.next(mappedUser);  
 
         this.loadProfile();
       }
@@ -73,8 +73,6 @@ export class AuthService {
     );
   }
 
-  // Gets run one time at the first run of the website to make sure our useres is loaded, before anything else is being executed
-  //(this is to make sure that we always know the user is always presented as null, as it doesn't exists and not because it failed to load the user)
 
   initializeApp(): Promise<void> {
     return this.loadUser();
@@ -99,7 +97,6 @@ export class AuthService {
     return this.http.get<Profile>(this.apiUrl + "/profile", {withCredentials: true})
   }
 
-  // Map the level from API to the Role enum
   private mapLevelToRole(level: string): Role {
     switch (level) {
       case 'admin': return Role.Admin;

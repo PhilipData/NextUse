@@ -35,7 +35,7 @@
   <a class="nav-link position-relative" routerLink="/cart" routerLinkActive="active">
     Kurv
 
-    <!-- Badge -->
+  
     <ng-container *ngIf="(cartService.cart$ | async)?.items?.length as count">
       <span *ngIf="count > 0"
             class="badge badge-pill badge-light position-absolute"

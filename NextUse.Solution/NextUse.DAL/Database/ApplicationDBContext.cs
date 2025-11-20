@@ -27,13 +27,12 @@ namespace NextUse.DAL.Extensions
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            // EF defaulter til cascade delete, og MSSQL kan ikke håndtere dette, når der er flere foreign keys til samme table (selvom f.eks. MySql og MariaDB kan).
-            // Vi er derfor nødsaget til at bruge FluentAPI til at ændre på dette
+
             builder.Entity<Rating>()
               .HasOne(r => r.FromProfile)
               .WithMany()
               .HasForeignKey(r => r.FromProfileId)
-              .OnDelete(DeleteBehavior.NoAction); // NOTE: If Cascade is needed, do it through the code
+              .OnDelete(DeleteBehavior.NoAction); 
 
             builder.Entity<Profile>()
                 .HasOne(p => p.Address)
@@ -44,7 +43,7 @@ namespace NextUse.DAL.Extensions
             //.HasOne(p => p.User)
             //.WithOne()
             //.HasForeignKey<Profile>(p => p.UserId)
-            //.OnDelete(DeleteBehavior.Cascade); // Ensures profile is deleted when user is deleted
+            //.OnDelete(DeleteBehavior.Cascade); 
             builder.Entity<Profile>()
               .HasOne(p => p.User)
               .WithOne(u => u.Profile)
@@ -62,14 +61,13 @@ namespace NextUse.DAL.Extensions
             builder.Entity<Product>()
                 .HasOne(r => r.Address)
                 .WithOne(a => a.Product)
-                .OnDelete(DeleteBehavior.NoAction); // NOTE: If Cascade is needed, do it through the code
+                .OnDelete(DeleteBehavior.NoAction); 
 
             builder.Entity<Product>()
                 .HasOne(p => p.Category)
                 .WithMany(c => c.Products)
                 .HasForeignKey(p => p.CategoryId)
-                .OnDelete(DeleteBehavior.NoAction); // NOTE: If Cascade is needed, do it through the code
-                                                    // REMEMBER THIS SHIT WHEN WE WORK ON FRONT END 
+                .OnDelete(DeleteBehavior.NoAction); 
 
 
             builder.Entity<Product>()
@@ -84,12 +82,11 @@ namespace NextUse.DAL.Extensions
                 .HasForeignKey(b => b.ProductId)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            // Change Delete behavior for Profile
             builder.Entity<Bookmark>()
                 .HasOne(b => b.Profile)
                 .WithMany(p => p.Bookmarks)
                 .HasForeignKey(b => b.ProfileId)
-                .OnDelete(DeleteBehavior.NoAction);  // Change from Cascade to  NoAction
+                .OnDelete(DeleteBehavior.NoAction);  
 
             builder.Entity<Bookmark>()
                 .HasOne(b => b.Product)
@@ -97,7 +94,7 @@ namespace NextUse.DAL.Extensions
                 .HasForeignKey(b => b.ProductId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // Change from Cascade to  NoAction
+          
 
             builder.Entity<Comment>()
                .HasOne(c => c.Profile)

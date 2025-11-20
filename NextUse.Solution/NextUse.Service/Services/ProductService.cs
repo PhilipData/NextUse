@@ -194,7 +194,7 @@ namespace NextUse.Services.Services
 
             try
             {
-                // Add Address
+                
                 var addressRequest = MapProductRequestWithImagesAddressToAddressRequest(newProduct);
 
                 var insertedAddress = await _addressService.AddAsync(addressRequest);
@@ -204,7 +204,6 @@ namespace NextUse.Services.Services
                     throw new Exception("Address wasn't added");
                 }
 
-                // Add product
                 var product = MapProductRequestWithImagesToProducts(newProduct, insertedAddress.Id);
 
                 var insertedProduct = await _productsRepository.AddAsync(product);
@@ -214,7 +213,7 @@ namespace NextUse.Services.Services
                     throw new Exception("Product wasn't added");
                 }
 
-                // Add images
+                
                 var imageRequest = MapProductRequestWithImagesToImageRequest(newProduct, insertedProduct.Id);
 
                 await _imageService.AddRangeAsync(imageRequest);

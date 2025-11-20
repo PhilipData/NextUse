@@ -27,7 +27,7 @@ namespace NextUse.Services.Services
             {
                 Id = rating.Id,
                 Score = rating.Score,
-                CreatedAt = createdAtCopenhagen.ToString("yyyy-MM-dd HH:mm:ss"), //Formatted for readability
+                CreatedAt = createdAtCopenhagen.ToString("yyyy-MM-dd HH:mm:ss"), 
                 ToProfile = new RatingProfileResponse
                 {
                     Id = rating.ToProfile!.Id,

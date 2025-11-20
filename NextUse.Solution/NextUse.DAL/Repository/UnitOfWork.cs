@@ -21,7 +21,6 @@ namespace NextUse.DAL.Repository
 
         public async Task BeginTransactionAsync()
         {
-            // Start a new transaction
             _currentTransaction = await _context.Database.BeginTransactionAsync();
         }
 

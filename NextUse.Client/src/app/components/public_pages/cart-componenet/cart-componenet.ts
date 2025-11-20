@@ -11,7 +11,6 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './cart-componenet.css',
 })
 export class CartComponenet implements OnInit {
-  // private cartService = inject(CartService);
    constructor( public cartService: CartService, private toastr: ToastrService) {}
 
   cart = signal<CartResponse | null>(null);
@@ -100,7 +99,7 @@ checkout(): void {
   this.loading.set(true);
   this.cartService.checkout().subscribe({
     next: cart => {
-      this.cart.set(cart); // frontend cart becomes empty
+      this.cart.set(cart);
       this.loading.set(false);
       this.toastr.success('Checkout gennemført! Din ordre er nu CheckedOut.');
     },

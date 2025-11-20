@@ -1,11 +1,9 @@
 <div class="container my-5">
   <div class="row d-flex flex-column-reverse flex-md-row">
-    <!-- Image Showcase Section -->
     <div class="col-md-8 col-12">
       <div class="row mt-2">
         <div class="col">
           <div class="row">
-            <!-- Showcase Image -->
             <div class="col-md-12 mb-3">
               <div class="card">
                 <img class="card-img-top" [src]="selectedImage" alt="Showcase Image">
@@ -15,7 +13,6 @@
         </div>
       </div>
 
-      <!-- Image Thumbnails -->
       <div class="row">
         <div class="col-auto" *ngFor="let image of product?.images">
           <img class="img-thumbnail" [src]="image.blobUrl" alt="Product Image"
@@ -25,7 +22,6 @@
 
       <div class="splitter my-4"></div>
 
-      <!-- Product Description -->
       <div class="col p-0">
         <h4>Description</h4>
         <p>{{ product?.description }}</p>
@@ -33,16 +29,14 @@
 
       <div class="splitter my-4"></div>
 
-      <!-- Comment Section -->
       <div class="row mb-4">
         <div class="col-12">
           <h4>Comments</h4>
 
-          <!-- Display Existing Comments -->
           <div class="my-3">
             <div *ngFor="let comment of product?.comments" class="comments card mb-2">
               <div class="d-flex justify-content-between">
-                <h5><strong>{{ comment.profile?.name }}</strong></h5> <!-- TODO: Link til profile-detail -->
+                <h5><strong>{{ comment.profile?.name }}</strong></h5>
                 <small>{{ comment.createdAt }}</small>
               </div>
               <div class="splitter"></div>
@@ -50,7 +44,6 @@
             </div>
           </div>
 
-          <!-- Add a Comment -->
           <div class="mt-4" *ngIf="profile">
             <h5>Leave a Comment</h5>
             <form (ngSubmit)="submitComment()">
@@ -70,16 +63,13 @@
       </div>
     </div>
 
-    <!-- Product Details Section -->
     <div class="col-md-4 col-12">
-      <!-- Product Title -->
       <div class="row mb-3">
         <div class="col">
           <h1>{{ product?.title }}</h1>
         </div>
       </div>
 
-      <!-- Bookmark Button -->
       <div class="row mb-3" *ngIf="profile">
         <div class="col">
 
@@ -90,7 +80,6 @@
 
       </div>
 
-      <!-- Product Info Section -->
       <div class="row">
         <ul class="list-unstyled">
           <li class="display-6 font-weight-bold mb-3">{{ product?.price }} kr.</li>
@@ -108,7 +97,6 @@
   Læg i kurv
 </button>
 
-<!-- Optional info message -->
 <div *ngIf="isOwner" class="text-muted mt-2">
   Du kan ikke tilføje dit eget produkt til kurven.
   </div>
@@ -117,12 +105,11 @@
   
 
      <div class="splitter my-4"></div>
-      <!-- User Profile Section -->
       <div class="row mb-4">
         <div class="col-12">
           <h4><strong>Seller</strong></h4>
           <div class=" profile-card card p-3" [routerLink]="['/profile', product?.profile?.id]">
-            <h5>{{ product?.profile?.name }}</h5> <!-- TODO: Link to profile-detail -->
+            <h5>{{ product?.profile?.name }}</h5> 
 
             <div class="star-rating">
               <div class="stars-fill" [style.width]="starWidth"></div>
