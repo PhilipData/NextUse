@@ -135,7 +135,6 @@ header p {
 
 
 
-/* Scrollbar Styles (for better user experience on scrollable areas) */
 .product-carousel::-webkit-scrollbar {
   height: 8px;
 }
@@ -145,7 +144,6 @@ header p {
   border-radius: 10px;
 }
 
-/* Keyframe for the scrolling animation */
 @keyframes scrollProducts {
   0% {
     transform: translateX(-25%);
@@ -154,14 +152,3 @@ header p {
     transform: translateX(0);
   }
 }
-
-/* Responsive Design */
-/* @media (max-width: 768px) {
-  .product-carousel {
-    flex-direction: column;
-  }
-
-  .product-card {
-    max-width: 100%;
-  } */
-/* } */

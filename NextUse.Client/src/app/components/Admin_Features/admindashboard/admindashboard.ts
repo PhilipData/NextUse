@@ -20,20 +20,20 @@ export class Admindashboard implements OnInit {
 
    
   user: User | null = null;
-  showCreateCategory = false; // Controls form visibility
-  newCategory = ''; // Holds the new category name
-  categories: Category[] = []; // Holds the list of categories
-  showEditModal = false; // Controls edit modal visibility
-  editCategoryId: number | null = null; // Holds the ID of the category being edited
-  editCategoryName = ''; // Holds the name of the category being edited
-  profiles: Profile[] = []; // Store user profiles
-  currentView: 'categories' | 'users' = 'categories'; // Tracks the current view
+  showCreateCategory = false;
+  newCategory = ''; 
+  categories: Category[] = []; 
+  showEditModal = false; 
+  editCategoryId: number | null = null; 
+  editCategoryName = ''; 
+  profiles: Profile[] = []; 
+  currentView: 'categories' | 'users' = 'categories'; 
 
  
 
     ngOnInit(): void {
       this.user = this.auth.user; 
-    this.loadCategories(); // Load categories on component initialization
+    this.loadCategories(); 
   }
 
   toggleCreateCategory() {
@@ -108,7 +108,7 @@ toggleBlock(profile: Profile) {
   saveCategory() {
     if (this.newCategory.trim()) {
       const newCategory: Category = {
-        id: 0, // ID will be assigned by the backend
+        id: 0,
         name: this.newCategory
       };
 
@@ -117,7 +117,7 @@ toggleBlock(profile: Profile) {
           this.categories.push(createdCategory);
           console.log('Category Created:', createdCategory);
           alert(`Category "${createdCategory.name}" created successfully!`);
-          this.newCategory = ''; // Reset input field
+          this.newCategory = ''; 
           this.showCreateCategory = false;
         },
         error: (err) => {
@@ -147,7 +147,7 @@ toggleBlock(profile: Profile) {
         next: (data) => {
           const index = this.categories.findIndex(cat => cat.id === this.editCategoryId);
           if (index !== -1) {
-            this.categories[index] = data; // Update the category in the list
+            this.categories[index] = data;
           }
           alert('Category updated successfully!');
           this.closeEditModal();

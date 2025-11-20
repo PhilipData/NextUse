@@ -93,23 +93,7 @@ namespace NextUse.API.Controllers
             }
         }
 
-        //[HttpPost("login")]
-        //public async Task<IActionResult> Login(LoginRequest loginRequest)
-        //{
-        //    try
-        //    {
-        //        var result = await _signInManager.PasswordSignInAsync(loginRequest.Email, loginRequest.Password, true, false);
-
-        //        if (result.Succeeded)
-        //            return Ok();
-
-        //        return BadRequest();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
+  
 
 
         [HttpPost("login")]
@@ -129,11 +113,10 @@ namespace NextUse.API.Controllers
                     return Unauthorized(new { message = "Invalid credentials." });
                 }
 
-                // Password is correct, now check if profile is blocked
                 var profile = await _profileService.GetByUserIdAsync(user.Id);
                 if (profile != null && profile.IsBlocked)
                 {
-                    // Sign out user if already signed in
+                    
                     await _signInManager.SignOutAsync();
                     return StatusCode(StatusCodes.Status403Forbidden, new { message = "Your profile is blocked. Contact support." });
                 }

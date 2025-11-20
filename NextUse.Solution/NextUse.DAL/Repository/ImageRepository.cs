@@ -21,17 +21,17 @@ namespace NextUse.DAL.Repository
 
         public async Task<IEnumerable<Image>> GetAllAsync()
         {
-            return await _context.Images.ToListAsync(); // TODO: Evt. Include(p => p.Product)
+            return await _context.Images.ToListAsync(); 
         }
 
         public async Task<Image?> GetByIdAsync(int id)
         {
-            return await _context.Images.FirstOrDefaultAsync(p => p.Id == id); // TODO: Evt. Include(p => p.Product)
+            return await _context.Images.FirstOrDefaultAsync(p => p.Id == id); 
         }
 
         public async Task<IEnumerable<Image>?> GetByProductIdAsync(int productId)
         {
-            return await _context.Images.Where(i => i.ProductId == productId).ToListAsync(); // TODO: Evt. Include(p => p.Product)
+            return await _context.Images.Where(i => i.ProductId == productId).ToListAsync(); 
         }
 
         public async Task<IEnumerable<Image>> AddRangeAsync(IEnumerable<Image> newImages)

@@ -5,7 +5,6 @@
     <button class="close-btn text-xl" (click)="toggleChat()">✖</button>
   </div>
 
-  <!-- User List -->
   <div class="chat-users bg-gray-100 px-4 py-2">
     <p class="text-sm font-medium text-gray-700 mb-2">Chat with:</p>
     <div class="user-list flex flex-wrap gap-2">
@@ -18,11 +17,9 @@
     </div>
   </div>
 
-  <!-- Select User to chat with -->
   <div *ngIf="selectedUserId" class="flex flex-col h-64 px-4 py-2">
     <p class="text-sm text-gray-600 mb-1">Chatting with: {{ getSelectedUserName() }}</p>
 
-    <!-- load Message history between users -->
     <div class="chat-body flex-1 overflow-y-auto space-y-2">
       <p *ngIf="messages().length === 0" class="text-center text-gray-500">No messages yet.</p>
 
@@ -40,7 +37,6 @@
     </div>
   </div>
 
-  <!-- Sending message to other user -->
   <div class="chat-footer bg-gray-100 px-4 py-2 flex items-center gap-2" *ngIf="selectedUserId">
     <input type="text"
            class="flex-1 border border-gray-300 rounded-md py-1 px-2 text-sm"
@@ -51,7 +47,6 @@
   </div>
 </div>
 
-<!-- Toggle Chat-widget -->
 <button class="chat-toggle fixed bottom-4 right-4 bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition"
         *ngIf="!isOpen()" (click)="toggleChat()">💬</button>
 

@@ -10,6 +10,7 @@ import { UserComment } from "./comment";
 import { Message } from "./message";
 import { Product } from "./product";
 
+
 export interface Profile {
     id: number;
     name: string;
@@ -23,5 +24,7 @@ export interface Profile {
     comments?: UserComment[] | null;
     messages?: Message[] | null;
     products?: Product[] | null;
+
      isBlocked: boolean;
+
 }

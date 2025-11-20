@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../_services/auth.service';
 import { Profile } from '../../_models/profile';
 import { User } from '../../_models/user';
+import { CartService } from '../../_services/cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +15,9 @@ import { User } from '../../_models/user';
 })
 export class Navbar implements OnInit {
   user:User | null = null;
-  constructor(public authService: AuthService, @Inject(Router) private router: Router) {}
+  constructor(public authService: AuthService, private router: Router, public cartService: CartService) {}
+
+
  
 
   ngOnInit() {

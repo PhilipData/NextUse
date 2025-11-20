@@ -44,26 +44,23 @@ export class PersonalProfile implements OnInit {
     }))
   }
 
-  editProfile() {
-    console.log('Edit Profile Clicked');
-    // When there is time make navigation to the edit profile page or use modal
-  }
+  // editProfile() {
+  //   console.log('Edit Profile Clicked');
+  // }
 
-  deleteBookmark(index: number) {
-    if (this.profile?.bookmarks) {
-      this.profile.bookmarks.splice(index, 1);
-    }
-  }
+  // deleteBookmark(index: number) {
+  //   if (this.profile?.bookmarks) {
+  //     this.profile.bookmarks.splice(index, 1);
+  //   }
+  // }
 
-  goToBookmark(bookmark: any) {
-    console.log('Navigating to:', bookmark);
-    // this also needs navigation to bookmark page
-  }
+  // goToBookmark(bookmark: any) {
+  //   console.log('Navigating to:', bookmark);
+  // }
 
-  editAdvert(advert: any) {
-    console.log('Editing Advert:', advert);
-    // add the logic to editing product
-  }
+  // editProduct(advert: any) {
+  //   console.log('Editing Advert:', advert);
+  // }
 
   deleteProduct(productId: number) {
     this.productService.deleteById(productId).subscribe(() => {

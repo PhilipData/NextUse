@@ -27,76 +27,6 @@ namespace NextUse.Services.Services
             _unitOfWork = unitOfWork;
         }
 
-        //private ProductResponse MapProductsToProductsResponse(Product product)
-        //{
-        //    var productResponse = new ProductResponse
-        //    {
-        //        Id = product.Id,
-        //        Title = product.Title,
-        //        Price = product.Price,
-        //        Description = product.Description,
-        //    };
-
-        //    if (product.Address != null)
-        //    {
-        //        productResponse.Address = new ProductAddressReponse
-        //        {
-
-        //            Id = product.Address!.Id,
-        //            Country = product.Address.Country,
-        //            City = product.Address.City,
-        //            PostalCode = product.Address.PostalCode,
-        //            Street = product.Address.Street,
-        //            HouseNumber = product.Address.HouseNumber
-        //        };
-        //    }
-
-        //    if (product.Profile != null)
-        //    {
-        //        productResponse.Profile = new ProductProfilesResponse
-        //        {
-        //            Id = product.Profile!.Id,
-        //            Name = product.Profile.Name,
-        //            AverageRating = product.Profile.Ratings.IsNullOrEmpty() ? 0 : product.Profile.Ratings!.Where(r => r.ToProfileId == product.Profile.Id).Average(r => r.Score),
-        //            RatingAmount = product.Profile.Ratings.Count
-        //        };
-        //    }
-
-        //    if (product.Category != null)
-        //    {
-        //        productResponse.Category = new ProductCategoryResponse
-        //        {
-        //            Id = product.Category!.Id,
-        //            Name = product.Category.Name
-        //        };
-        //    }
-        //    if (!product.Comments.IsNullOrEmpty())
-        //    {
-        //        productResponse.Comments = product.Comments?.Select(comment => new ProductCommentResponse
-        //        {
-        //            Id = comment.Id,
-        //            Content = comment.Content,
-        //            CreatedAt = comment.CreatedAt.ToString("yyyy-MM-dd HH:mm:ss"),
-        //            Profile = new CommentProfileResponse
-        //            {
-        //                Id = comment.Profile!.Id,
-        //                Name = comment.Profile.Name
-        //            }
-
-        //        });
-        //    }
-
-        //    if (!product.Images.IsNullOrEmpty())
-        //    {
-        //        productResponse.Images = product.Images?.Select(image => new ProductImageResponse
-        //        {
-        //            Id = image.Id,
-        //            Blob = image.Blob,
-        //        });
-        //    }
-
-        //    return productResponse;
-        //}
         private ProductResponse MapProductsToProductsResponse(Product product)
         {
             var productResponse = new ProductResponse
@@ -264,7 +194,7 @@ namespace NextUse.Services.Services
 
             try
             {
-                // Add Address
+                
                 var addressRequest = MapProductRequestWithImagesAddressToAddressRequest(newProduct);
 
                 var insertedAddress = await _addressService.AddAsync(addressRequest);
@@ -274,7 +204,6 @@ namespace NextUse.Services.Services
                     throw new Exception("Address wasn't added");
                 }
 
-                // Add product
                 var product = MapProductRequestWithImagesToProducts(newProduct, insertedAddress.Id);
 
                 var insertedProduct = await _productsRepository.AddAsync(product);
@@ -284,7 +213,7 @@ namespace NextUse.Services.Services
                     throw new Exception("Product wasn't added");
                 }
 
-                // Add images
+                
                 var imageRequest = MapProductRequestWithImagesToImageRequest(newProduct, insertedProduct.Id);
 
                 await _imageService.AddRangeAsync(imageRequest);

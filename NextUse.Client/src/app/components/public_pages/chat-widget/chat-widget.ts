@@ -15,7 +15,7 @@ import { ProfileService } from '../../../_services/profile.service';
 })
 export class ChatWidget {
  isOpen = signal(false);
-  messages = signal<Message[]>([]); // Always initialized - Signal connecting to another ? // return to this
+  messages = signal<Message[]>([]);
   users = signal<Profile[]>([]);
   selectedUserId: number | null = null;
   newMessage = '';
@@ -63,13 +63,10 @@ export class ChatWidget {
         );
 
         console.log('Filtered Messages:', filteredMessages);
-        this.messages.set(filteredMessages); // When message is send to a user it update the the history, sort of
+        this.messages.set(filteredMessages);
       }
     });
   }
-
-
-
 
   getSelectedUserName(): string {
     const user = this.users().find(user => user.id === this.selectedUserId);
@@ -90,7 +87,7 @@ export class ChatWidget {
     if (!this.newMessage.trim() || !this.selectedUserId || !this.myProfileId) return;
 
     const message: Message = {
-      id: 0, // Assigned by backend
+      id: 0,
       content: this.newMessage.trim(),
       createdAt: new Date().toISOString(),
       fromProfileId: this.myProfileId,
@@ -106,12 +103,10 @@ export class ChatWidget {
     });
   }
 
-  //  Select user and load their messages
   selectUser(userId: number) {
     this.selectedUserId = userId;
     console.log('Selected User:', this.selectedUserId);
     this.loadMessages();
   }
-
 
 }

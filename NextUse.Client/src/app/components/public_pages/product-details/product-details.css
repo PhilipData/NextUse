@@ -92,7 +92,7 @@
     letter-spacing: 3px;
 }
 
-@media (max-width: 767px) { /* Mobile screens */
+@media (max-width: 767px) {
     .card-img-top {
         height: 300px;
     }

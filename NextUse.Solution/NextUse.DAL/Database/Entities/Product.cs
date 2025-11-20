@@ -31,6 +31,6 @@ namespace NextUse.DAL.Database.Entities
         public List<Bookmark> Bookmarks { get; set; } = new();
         public List<Image> Images { get; set; } = new();
 
-        //TODO Add list of images
+       
     }
 }

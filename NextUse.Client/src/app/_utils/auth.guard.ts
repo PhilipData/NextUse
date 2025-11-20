@@ -9,7 +9,7 @@ export const authGuard: CanActivateFn = async (route, state) => {
   const router = inject(Router);
 
   if (!authService.isAuthenticated()) {
-    router.navigate(['/login'], { queryParams: { returnUrl: state.url } });  // Redirect to login if not authenticated
+    router.navigate(['/login'], { queryParams: { returnUrl: state.url } }); 
     return false;
   }
 
@@ -18,21 +18,21 @@ export const authGuard: CanActivateFn = async (route, state) => {
   if (requiredRoles && requiredRoles.length > 0) {
     
     if (authService.isAdmin()) {
-      return true; // Allow access for Admin role
+      return true; 
     }
 
     if (authService.isSupport() && requiredRoles.some(role => role === Role.Support)) {
       return true; 
     }
 
-    router.navigate(['/']); // If user doesn't have required role, navigate to root
+    router.navigate(['/']); 
     return false;
   }
 
-  return true;  // Allow access if no role restrictions are defined
+  return true;  
 };
 
-export const noAuthGuard: CanActivateFn = (route, state) => { // used for paths where authenticated users should not be able to go
+export const noAuthGuard: CanActivateFn = (route, state) => { 
   const authService = inject(AuthService);
   const router = inject(Router);
   

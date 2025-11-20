@@ -12,6 +12,7 @@ import { AuthService } from '../../../_services/auth.service';
 import { BookmarkService } from '../../../_services/bookmark.service';
 import { CommentService } from '../../../_services/comment.service';
 import { ProductService } from '../../../_services/product.service';
+import { CartService } from '../../../_services/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -37,6 +38,7 @@ export class ProductDetails {
     private commentService: CommentService,
     private authService: AuthService,
     private router: Router,
+    private cartService: CartService,
     private toastr:ToastrService,
     private activatedRoute: ActivatedRoute
   ) {}
@@ -44,7 +46,6 @@ export class ProductDetails {
   ngOnInit(): void {
     this.authService.getProfileForUser().pipe(
       finalize(() => {
-        // This will always be executed after the observable completes
         this.loadProduct();
       })
     ).subscribe({
@@ -54,6 +55,18 @@ export class ProductDetails {
     });
   }
 
+  addToCart(productId: number) {
+  if (!this.authService.isAuthenticated()) {
+    this.toastr.info('Please log in to add items to your cart.');
+
+    this.router.navigate(['/login']);
+    return;
+  }
+  this.cartService.addItem(productId).subscribe(() => {
+    this.toastr.success("Produkt tilføjet til kurven!");
+    this.router.navigate(['/cart']);
+  });
+}
 
   setSelectedImage(imageUrl: string) {
     this.selectedImage = imageUrl;
@@ -91,7 +104,6 @@ export class ProductDetails {
   
         this.starWidth = `${(product.profile?.averageRating! / 5) * 100}%`;
   
-        // Only check bookmarks if profile exists
         if (this.profile) {
           this.bookmarkService.findByProfileId(this.profile.id).subscribe((bookmarks) => {
             let existingBookmark = bookmarks?.find((x) => x.product?.id === this.product?.id);
