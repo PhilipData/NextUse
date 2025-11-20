@@ -39,7 +39,7 @@ namespace NextUse.Test.Controllers
                         City = "Copenhagen",
                         PostalCode = 2400,
                         Street = "Kongens_Nytorv",
-                        Housenumber = "1"
+                        HouseNumber = "1"
                     }
                 }
             };
@@ -84,7 +84,7 @@ namespace NextUse.Test.Controllers
                     City = "Copenhagen",
                     PostalCode = 2400,
                     Street = "Kongens_Nytorv",
-                    Housenumber = "1"
+                    HouseNumber = "1"
                 }
             };
             _mockProfileService.Setup(service => service.AddAsync(newProfile)).ReturnsAsync(profileResponse);
@@ -114,7 +114,7 @@ namespace NextUse.Test.Controllers
                     City = "Copenhagen",
                     PostalCode = 2400,
                     Street = "Kongens_Nytorv",
-                    Housenumber = "1"
+                    HouseNumber = "1"
                 }
             };
             _mockProfileService.Setup(service => service.GetByIdAsync(1)).ReturnsAsync(profileResponse);
@@ -159,7 +159,7 @@ namespace NextUse.Test.Controllers
                     City = "Copenhagen",
                     PostalCode = 2400,
                     Street = "Kongens_Nytorv",
-                    Housenumber = "1"
+                    HouseNumber = "1"
                 }
             };
             _mockProfileService.Setup(service => service.UpdateByIdAsync(1, updatedProfile)).ReturnsAsync(profileResponse);
@@ -191,7 +191,7 @@ namespace NextUse.Test.Controllers
                     City = "Copenhagen",
                     PostalCode = 2400,
                     Street = "Kongens_Nytorv",
-                    Housenumber = "1"
+                    HouseNumber = "1"
                 }
             };
             _mockProfileService.Setup(service => service.UpdateByIdAsync(99, updatedProfile)).ThrowsAsync(new Exception("Profile not found"));
