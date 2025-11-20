@@ -16,7 +16,7 @@ namespace NextUse.DAL.Database.Entities
 
         public required string Name { get; set; }
         public string UserId { get; set; }
-        //public virtual IKey UserId { get; set; }
+       
         public User? User { get; set; }
         public int AddressId { get; set; }
 

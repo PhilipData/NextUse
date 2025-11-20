@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -16,8 +16,7 @@ import { ProfileService } from '../../../_services/profile.service';
   templateUrl: './personal-profile.html',
   styleUrl: './personal-profile.css',
 })
-export class PersonalProfile {
-
+export class PersonalProfile implements OnInit {
   profile: Profile | null = null;
   loggedInProfile: Profile | null = null;
   profileProducts: Product[] = []
@@ -45,6 +44,11 @@ export class PersonalProfile {
     }))
   }
 
+  editProfile() {
+    console.log('Edit Profile Clicked');
+    // When there is time make navigation to the edit profile page or use modal
+  }
+
   deleteBookmark(index: number) {
     if (this.profile?.bookmarks) {
       this.profile.bookmarks.splice(index, 1);
@@ -53,10 +57,12 @@ export class PersonalProfile {
 
   goToBookmark(bookmark: any) {
     console.log('Navigating to:', bookmark);
+    // this also needs navigation to bookmark page
   }
 
   editAdvert(advert: any) {
     console.log('Editing Advert:', advert);
+    // add the logic to editing product
   }
 
   deleteProduct(productId: number) {

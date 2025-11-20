@@ -71,7 +71,7 @@ export class ProductService {
                 ...image,
                 blobUrl: this.createImageUrl(image.blob)
               }))
-            : [] // If images are null, return an empty array instead of breaking
+            : [] // same as above, to make sure it doesn't break
         }))
       )
     );
