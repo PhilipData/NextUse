@@ -8,6 +8,7 @@ import { User } from '../../../_models/user';
 import { AuthService } from '../../../_services/auth.service';
 import { CategoryService } from '../../../_services/category.service';
 import { ProfileService } from '../../../_services/profile.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-admindashboard',
@@ -16,7 +17,7 @@ import { ProfileService } from '../../../_services/profile.service';
   styleUrl: './admindashboard.css',
 })
 export class Admindashboard implements OnInit {
-   constructor(private categoryService: CategoryService, private auth: AuthService, private profileService: ProfileService) {}
+   constructor(private categoryService: CategoryService, private auth: AuthService, private profileService: ProfileService, private toastr: ToastrService) {}
 
    
   user: User | null = null;
@@ -86,7 +87,8 @@ toggleBlock(profile: Profile) {
     request$.subscribe({
       next: () => {
         profile.isBlocked = !profile.isBlocked;
-        alert(`User ${profile.isBlocked ? 'blocked' : 'unblocked'} successfully!`);
+        this.toastr.success(`User ${profile.isBlocked ? 'blocked' : 'unblocked'} successfully!`);
+        // alert(`User ${profile.isBlocked ? 'blocked' : 'unblocked'} successfully!`);
       },
       error: (err) => {
         console.error('Failed to update user status:', err);
@@ -115,8 +117,9 @@ toggleBlock(profile: Profile) {
       this.categoryService.create(newCategory).subscribe({
         next: (createdCategory) => {
           this.categories.push(createdCategory);
-          console.log('Category Created:', createdCategory);
-          alert(`Category "${createdCategory.name}" created successfully!`);
+          this.toastr.success(`Category "${createdCategory.name}" created successfully!`);
+          // console.log('Category Created:', createdCategory);
+          // alert(`Category "${createdCategory.name}" created successfully!`);
           this.newCategory = ''; 
           this.showCreateCategory = false;
         },
@@ -149,7 +152,8 @@ toggleBlock(profile: Profile) {
           if (index !== -1) {
             this.categories[index] = data;
           }
-          alert('Category updated successfully!');
+          // alert('Category updated successfully!');
+          this.toastr.success('Category updated successfully!');
           this.closeEditModal();
         },
         error: (err) => {
@@ -163,11 +167,14 @@ toggleBlock(profile: Profile) {
   }
 
   deleteCategory(category: Category) {
-    if (confirm(`Are you sure you want to delete "${category.name}"?`)) {
+     if (confirm(`Are you sure you want to delete "${category.name}"?`)) 
+    {
       this.categoryService.delete(category.id).subscribe({
         next: () => {
           this.categories = this.categories.filter(cat => cat.id !== category.id);
-          alert('Category deleted successfully!');
+          // alert('Category deleted successfully!');
+          this.toastr.success('Category deleted successfully!');
+          this.closeEditModal();
         },
         error: (err) => {
           console.error('Failed to delete category:', err);
